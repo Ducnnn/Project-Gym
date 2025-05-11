@@ -57,4 +57,6 @@ dependencies {
     implementation(libs.androidx.credentials)
     implementation(libs.androidx.credentials.play.services.auth)
     implementation(libs.googleid)
+    implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.5.0")
+
 }

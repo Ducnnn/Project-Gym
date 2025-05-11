@@ -9,8 +9,12 @@ import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
+import kotlinx.datetime.*
+
 
 class MainMenuActivity : AppCompatActivity() {
+
+
     private lateinit var auth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,6 +27,8 @@ class MainMenuActivity : AppCompatActivity() {
         }
         auth = Firebase.auth
         val txt = findViewById<TextView>(R.id.txt_name)
-        txt.text = auth.currentUser?.email ?: "bebra"
+        val currentMoment = Clock.System.now()
+        val datetime = currentMoment.toLocalDateTime(TimeZone.currentSystemDefault())
+        txt.text = "$datetime"
     }
 }
