@@ -11,4 +11,123 @@
         android:layout_height="match_parent"
         android:text="@string/hello_blank_fragment" />
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="188dp">
+
+        <CalendarView
+            android:id="@+id/calendarView"
+            android:layout_width="434dp"
+            android:layout_height="231dp"
+            tools:layout_editor_absoluteX="-12dp"
+            tools:layout_editor_absoluteY="-40dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="303dp"
+            android:layout_height="461dp"
+            tools:layout_editor_absoluteX="54dp"
+            tools:layout_editor_absoluteY="235dp">
+
+            <TextView
+                android:id="@+id/list_of_days"
+                android:layout_width="111dp"
+                android:layout_height="28dp"
+                android:text="TextView"
+                tools:layout_editor_absoluteX="32dp"
+                tools:layout_editor_absoluteY="44dp" />
+
+            <Button
+                android:id="@+id/add_days"
+                android:layout_width="89dp"
+                android:layout_height="74dp"
+                android:text="Add days"
+                tools:layout_editor_absoluteX="172dp"
+                tools:layout_editor_absoluteY="16dp" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="201dp"
+                android:layout_height="56dp"
+                tools:layout_editor_absoluteX="56dp"
+                tools:layout_editor_absoluteY="217dp">
+
+                <TextView
+                    android:id="@+id/day_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TextView"
+                    tools:layout_editor_absoluteX="16dp"
+                    tools:layout_editor_absoluteY="16dp" />
+
+                <Button
+                    android:id="@+id/button_day_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Set"
+                    tools:layout_editor_absoluteX="116dp"
+                    tools:layout_editor_absoluteY="4dp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+                android:layout_width="201dp"
+                android:layout_height="56dp"
+                tools:layout_editor_absoluteX="56dp"
+                tools:layout_editor_absoluteY="113dp">
+
+                <Button
+                    android:id="@+id/button_day_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Set"
+                    tools:layout_editor_absoluteX="115dp"
+                    tools:layout_editor_absoluteY="4dp" />
+
+                <TextView
+                    android:id="@+id/day_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TextView"
+                    tools:layout_editor_absoluteX="16dp"
+                    tools:layout_editor_absoluteY="19dp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="201dp"
+                android:layout_height="56dp"
+                tools:layout_editor_absoluteX="56dp"
+                tools:layout_editor_absoluteY="314dp">
+
+                <TextView
+                    android:id="@+id/day_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TextView"
+                    tools:layout_editor_absoluteX="16dp"
+                    tools:layout_editor_absoluteY="19dp" />
+
+                <Button
+                    android:id="@+id/button_day_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Set"
+                    tools:layout_editor_absoluteX="117dp"
+                    tools:layout_editor_absoluteY="4dp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
