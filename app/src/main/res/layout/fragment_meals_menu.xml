@@ -1,61 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MealsMenuFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="205dp"
-        android:orientation="horizontal"></LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main_constraint_meals"
         android:layout_width="match_parent"
-        android:layout_height="731dp">
+        android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="335dp"
-            android:layout_height="428dp"
-            tools:layout_editor_absoluteX="38dp"
-            tools:layout_editor_absoluteY="227dp">
+            android:id="@+id/meals_graph"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <LinearLayout
-                android:layout_width="331dp"
-                android:layout_height="47dp"
-                android:orientation="horizontal"
-                tools:layout_editor_absoluteX="2dp"
-                tools:layout_editor_absoluteY="0dp">
-
-                <TextView
-                    android:id="@+id/meals"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="Meals" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="335dp"
-                android:layout_height="42dp"
-                android:orientation="horizontal"
-                tools:layout_editor_absoluteX="1dp"
-                tools:layout_editor_absoluteY="384dp">
-
-                <Button
-                    android:id="@+id/plus"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="Plus" />
-            </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="30dp"
+            android:orientation="vertical"
+            android:weightSum="1.0"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <TextView
+                android:id="@+id/meals"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.2"
+                android:text="Meals"
+                android:textSize="24sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.6" />
+
+
+            <Button
+                android:id="@+id/plus"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.2"
+                android:text="Plus" />
+        </LinearLayout>
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
-    <!-- res/layout/activity_main.xml -->
 </FrameLayout>
