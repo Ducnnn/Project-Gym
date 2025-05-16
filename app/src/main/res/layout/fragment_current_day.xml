@@ -6,29 +6,44 @@
     android:layout_height="match_parent"
     tools:context=".CurrentDayFragment">
 
-
+    <!-- TODO: delete this constraint layout -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="351dp"
-            android:layout_height="485dp"
-            tools:layout_editor_absoluteX="30dp"
-            tools:layout_editor_absoluteY="176dp" />
-
+        <!-- TODO: make recyclerView 0 dp high and manage the widths, add margins for it to look pretty-->
         <LinearLayout
-            android:layout_width="413dp"
-            android:layout_height="84dp"
-            android:orientation="horizontal"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="39dp">
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="39dp"
+            android:layout_marginBottom="53dp"
+            android:orientation="vertical"
+            android:weightSum="1">
+
+
+
 
             <TextView
+                android:layout_weight="0.3"
                 android:id="@+id/current_day"
                 android:layout_width="205dp"
-                android:layout_height="51dp"
+                android:layout_height="0dp"
                 android:text="Current Day" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_weight="0.7"
+                android:id="@+id/recyclerView"
+                android:layout_width="351dp"
+                android:layout_height="473dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="70dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

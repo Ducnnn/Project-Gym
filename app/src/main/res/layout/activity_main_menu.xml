@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainMenuFragment">
-
-
+    <!-- TODO: move insides of this layout to fragment main menu -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -27,7 +26,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="356dp"
+            android:layout_width="match_parent"
             android:layout_height="124dp"
             tools:layout_editor_absoluteX="27dp"
             tools:layout_editor_absoluteY="56dp">
@@ -58,6 +57,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <!-- TODO: find how to make a pie chart and water bottle -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layoutt"
             android:layout_width="356dp"
@@ -65,12 +65,13 @@
             tools:layout_editor_absoluteX="27dp"
             tools:layout_editor_absoluteY="210dp"/>
 
+        <!-- TODO: swap places of the layouts below -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="356dp"
             android:layout_height="124dp"
             tools:layout_editor_absoluteX="28dp"
             tools:layout_editor_absoluteY="534dp">
-
+            <!-- TODO: add constraints for views below-->
             <TextView
                 android:id="@+id/age"
                 android:layout_width="wrap_content"
@@ -109,13 +110,13 @@
             android:layout_height="124dp"
             tools:layout_editor_absoluteX="28dp"
             tools:layout_editor_absoluteY="372dp" >
-
+            <!-- TODO: make calendar view height and width match its parents -->
             <CalendarView
                 android:id="@+id/calendar"
                 android:layout_width="340dp"
                 android:layout_height="204dp"
                 tools:layout_editor_absoluteX="8dp"
-                tools:layout_editor_absoluteY="-55dp" />
+                tools:layout_editor_absoluteY="-77dp" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
