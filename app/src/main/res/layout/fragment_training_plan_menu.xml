@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,129 +8,73 @@
 
     <!-- TODO: delete this textview -->
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
     <!-- TODO: delete this constraint layout and put calendar view inside the constraint layout below change the height and width of calendar view -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="188dp">
 
-        <CalendarView
-            android:id="@+id/calendarView"
-            android:layout_width="434dp"
-            android:layout_height="231dp"
-            tools:layout_editor_absoluteX="-12dp"
-            tools:layout_editor_absoluteY="-40dp" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="303dp"
-            android:layout_height="461dp"
-            tools:layout_editor_absoluteX="54dp"
-            tools:layout_editor_absoluteY="235dp">
-            <!-- TODO: add text to list_of_days -->
-            <TextView
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="310dp"
+            android:layout_height="217dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
+            android:layout_marginBottom="508dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <CalendarView
+                android:id="@+id/calendarView"
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="30dp"
+            android:orientation="vertical"
+            android:weightSum="1.0"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+
+            <TextView
                 android:id="@+id/list_of_days"
-                android:layout_width="111dp"
-                android:layout_height="28dp"
-                android:text="TextView"
-                tools:layout_editor_absoluteX="32dp"
-                tools:layout_editor_absoluteY="44dp" />
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.2"
+                android:text="List of Days"
+                android:textSize="24sp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.6" />
 
             <Button
-                android:id="@+id/add_days"
-                android:layout_width="89dp"
-                android:layout_height="74dp"
-                android:text="Add days"
-                tools:layout_editor_absoluteX="172dp"
-                tools:layout_editor_absoluteY="16dp" />
+                android:id="@+id/button"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.2"
+                android:text="Button" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_width="201dp"
-                android:layout_height="56dp"
-                tools:layout_editor_absoluteX="56dp"
-                tools:layout_editor_absoluteY="217dp">
+        </LinearLayout>
 
-                <TextView
-                    android:id="@+id/day_1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="TextView"
-                    tools:layout_editor_absoluteX="16dp"
-                    tools:layout_editor_absoluteY="16dp" />
 
-                <Button
-                    android:id="@+id/button_day_1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Set"
-                    tools:layout_editor_absoluteX="116dp"
-                    tools:layout_editor_absoluteY="4dp" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-            <!-- TODO: replace unnecessary layout with textView and buttons with 1 recycler view -->
-            <androidx.constraintlayout.widget.ConstraintLayout
-                app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
-                android:layout_width="201dp"
-                android:layout_height="56dp"
-                tools:layout_editor_absoluteX="56dp"
-                tools:layout_editor_absoluteY="113dp">
 
-                <Button
-                    android:id="@+id/button_day_2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Set"
-                    tools:layout_editor_absoluteX="115dp"
-                    tools:layout_editor_absoluteY="4dp" />
-
-                <TextView
-                    android:id="@+id/day_2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="TextView"
-                    tools:layout_editor_absoluteX="16dp"
-                    tools:layout_editor_absoluteY="19dp" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout2"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_width="201dp"
-                android:layout_height="56dp"
-                tools:layout_editor_absoluteX="56dp"
-                tools:layout_editor_absoluteY="314dp">
-
-                <TextView
-                    android:id="@+id/day_3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="TextView"
-                    tools:layout_editor_absoluteX="16dp"
-                    tools:layout_editor_absoluteY="19dp" />
-
-                <Button
-                    android:id="@+id/button_day_3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Set"
-                    tools:layout_editor_absoluteX="117dp"
-                    tools:layout_editor_absoluteY="4dp" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 </FrameLayout>
