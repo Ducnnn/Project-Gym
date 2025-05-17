@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     tools:context=".MainMenuFragment">
     <!-- TODO: move insides of this layout to fragment main menu -->
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -123,3 +124,4 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
+

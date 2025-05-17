@@ -25,6 +25,10 @@ class MainMenuActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
+        auth = Firebase.auth
+        val txt = findViewById<TextView>(R.id.txt_name)
+        val currentMoment = Clock.System.now()
+        val datetime = currentMoment.toLocalDateTime(TimeZone.currentSystemDefault())
+        txt.text = "$datetime"
     }
 }
