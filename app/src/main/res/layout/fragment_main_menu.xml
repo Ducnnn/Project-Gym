@@ -5,18 +5,11 @@
     android:layout_height="match_parent"
     tools:context=".MainMenuFragment">
 
-
+    <!-- TODO: move layout from activity main_menu here -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
 
-        <TextView
-            android:id="@+id/txt_day"
-            android:layout_width="199dp"
-            android:layout_height="306dp"
-            android:text=""
-            tools:layout_editor_absoluteX="106dp"
-            tools:layout_editor_absoluteY="146dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
