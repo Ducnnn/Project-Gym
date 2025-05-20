@@ -6,15 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".CurrentDayFragment">
 
-    <!-- TODO: delete this constraint layout -->
-
-        <!-- TODO: make recyclerView 0 dp high and manage the widths, add margins for it to look pretty-->
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="39dp"
-            android:layout_marginBottom="53dp"
             android:orientation="vertical"
             android:weightSum="1">
 

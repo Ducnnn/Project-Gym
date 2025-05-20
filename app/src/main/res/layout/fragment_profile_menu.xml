@@ -1,131 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ProfileMenuFragment">
 
-    <!-- Profile Image -->
+    <androidx.constraintlayout.widget.ConstraintLayout
 
-    <!-- Details Container -->
-
-    <ImageView
-        android:id="@+id/profileImage"
-        android:layout_width="150dp"
-        android:layout_height="170dp"
-        android:contentDescription="@string/profile_image_description"
-        android:src="@drawable/illustration_male"
-        app:layout_constraintBottom_toTopOf="@+id/detailsContainer"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed" />
-
-    <LinearLayout
-        android:id="@+id/detailsContainer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="90dp"
-        app:layout_constraintTop_toBottomOf="@id/profileImage"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/logoutButton"/>
+        android:layout_height="match_parent">
 
-    <!-- Detail TextViews -->
-    <TextView
-        android:id="@+id/ageLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Age"
-        android:textStyle="bold"
-        android:textSize="16sp"
-        app:layout_constraintTop_toTopOf="@id/detailsContainer"
-        app:layout_constraintLeft_toLeftOf="@id/detailsContainer"/>
 
-    <TextView
-        android:id="@+id/ageValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="17"
-        app:layout_constraintTop_toBottomOf="@id/ageLabel"
-        app:layout_constraintLeft_toLeftOf="@id/detailsContainer"
-        app:layout_constraintBottom_toTopOf="@id/heightLabel"
-        app:layout_marginBottom="12dp"/>
+        <ImageView
+            android:id="@+id/profileImage"
+            android:layout_width="150dp"
+            android:layout_height="170dp"
+            app:layout_constraintBottom_toTopOf="@+id/detailsContainer"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
 
-    <TextView
-        android:id="@+id/heightLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Height"
-        android:textStyle="bold"
-        android:textSize="16sp"
-        app:layout_constraintTop_toBottomOf="@id/ageValue"
-        app:layout_constraintLeft_toLeftOf="@id/detailsContainer"/>
+        <LinearLayout
+            android:id="@+id/detailsContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="90dp"
+            app:layout_constraintBottom_toTopOf="@+id/logoutButton"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/profileImage" />
 
-    <TextView
-        android:id="@+id/heightValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="180 cm"
-        app:layout_constraintTop_toBottomOf="@id/heightLabel"
-        app:layout_constraintLeft_toLeftOf="@id/detailsContainer"
-        app:layout_marginBottom="12dp"/>
+        <TextView
+            android:id="@+id/ageLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Age"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="@id/detailsContainer"
+            app:layout_constraintTop_toTopOf="@id/detailsContainer" />
 
-    <TextView
-        android:id="@+id/weightLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Weight"
-        android:textStyle="bold"
-        android:textSize="16sp"
-        app:layout_constraintTop_toBottomOf="@id/heightValue"
-        app:layout_constraintLeft_toLeftOf="@id/detailsContainer"/>
+        <TextView
+            android:id="@+id/ageValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="17"
+            app:layout_constraintBottom_toTopOf="@id/heightLabel"
+            app:layout_constraintLeft_toLeftOf="@id/detailsContainer"
+            app:layout_constraintTop_toBottomOf="@id/ageLabel" />
 
-    <TextView
-        android:id="@+id/weightValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="80 kg"
-        app:layout_constraintTop_toBottomOf="@id/weightLabel"
-        app:layout_constraintLeft_toLeftOf="@id/detailsContainer"
-        app:layout_marginBottom="12dp"/>
+        <TextView
+            android:id="@+id/heightLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Height"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="@id/detailsContainer"
+            app:layout_constraintTop_toBottomOf="@id/ageValue" />
 
-    <TextView
-        android:id="@+id/genderLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Gender"
-        android:textStyle="bold"
-        android:textSize="16sp"
-        app:layout_constraintTop_toBottomOf="@id/weightValue"
-        app:layout_constraintLeft_toLeftOf="@id/detailsContainer"/>
+        <TextView
+            android:id="@+id/heightValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="180 cm"
+            app:layout_constraintLeft_toLeftOf="@id/detailsContainer"
+            app:layout_constraintTop_toBottomOf="@id/heightLabel" />
 
-    <TextView
-        android:id="@+id/genderValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Male"
-        app:layout_constraintTop_toBottomOf="@id/genderLabel"
-        app:layout_constraintLeft_toLeftOf="@id/detailsContainer"/>
+        <TextView
+            android:id="@+id/weightLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Weight"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="@id/detailsContainer"
+            app:layout_constraintTop_toBottomOf="@id/heightValue" />
 
-    <!-- Logout Button -->
-    <Button
-        android:id="@+id/logoutButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Logout"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:textAllCaps="false"
-        android:backgroundTint="#E53935"
-        android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        <TextView
+            android:id="@+id/weightValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="80 kg"
+            app:layout_constraintLeft_toLeftOf="@id/detailsContainer"
+            app:layout_constraintTop_toBottomOf="@id/weightLabel" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/genderLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gender"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="@id/detailsContainer"
+            app:layout_constraintTop_toBottomOf="@id/weightValue" />
+
+        <TextView
+            android:id="@+id/genderValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Male"
+            app:layout_constraintLeft_toLeftOf="@id/detailsContainer"
+            app:layout_constraintTop_toBottomOf="@id/genderLabel" />
+
+
+        <Button
+            android:id="@+id/logoutButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:backgroundTint="#E53935"
+            android:text="Logout"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

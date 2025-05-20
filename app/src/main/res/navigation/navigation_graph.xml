@@ -9,5 +9,38 @@
         android:id="@+id/mainMenuFragment"
         android:name="com.example.projectgym.MainMenuFragment"
         android:label="fragment_main_menu"
-        tools:layout="@layout/fragment_main_menu" />
+        tools:layout="@layout/fragment_main_menu" >
+        <action
+            android:id="@+id/action_mainMenuFragment_to_profileMenuFragment"
+            app:destination="@id/profileMenuFragment" />
+        <action
+            android:id="@+id/action_mainMenuFragment_to_currentDayFragment"
+            app:destination="@id/currentDayFragment" />
+        <action
+            android:id="@+id/action_mainMenuFragment_to_trainingPlanMenuFragment"
+            app:destination="@id/trainingPlanMenuFragment" />
+        <action
+            android:id="@+id/action_mainMenuFragment_to_mealsMenuFragment"
+            app:destination="@id/mealsMenuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileMenuFragment"
+        android:name="com.example.projectgym.ProfileMenuFragment"
+        android:label="fragment_profile_menu"
+        tools:layout="@layout/fragment_profile_menu" />
+    <fragment
+        android:id="@+id/currentDayFragment"
+        android:name="com.example.projectgym.CurrentDayFragment"
+        android:label="fragment_current_day"
+        tools:layout="@layout/fragment_current_day" />
+    <fragment
+        android:id="@+id/trainingPlanMenuFragment"
+        android:name="com.example.projectgym.TrainingPlanMenuFragment"
+        android:label="fragment_training_plan_menu"
+        tools:layout="@layout/fragment_training_plan_menu" />
+    <fragment
+        android:id="@+id/mealsMenuFragment"
+        android:name="com.example.projectgym.MealsMenuFragment"
+        android:label="fragment_meals_menu"
+        tools:layout="@layout/fragment_meals_menu" />
 </navigation>
