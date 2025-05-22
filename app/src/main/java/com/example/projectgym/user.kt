@@ -14,7 +14,7 @@ class TranDay (
     var exercises: MutableList<Exercise> = mutableListOf<Exercise>(),
 ) {
     fun addExercise(exercise : Exercise) {
-        exercises.add (exercise)
+        exercises.add(exercise)
     }
 
 }
