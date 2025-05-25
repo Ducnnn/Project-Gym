@@ -1,0 +1,10 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <include layout="@layout/textview_month_calendar_footer" />
+
+    <include layout="@layout/calendar_day_titles_container" />
+
+</LinearLayout>

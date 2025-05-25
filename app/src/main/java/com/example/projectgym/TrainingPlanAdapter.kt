@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
+import androidx.core.graphics.toColorInt
 import androidx.recyclerview.widget.RecyclerView
 
 class TrainingPlanAdapter (private val list: List<TranDay>):
@@ -16,14 +17,14 @@ class TrainingPlanAdapter (private val list: List<TranDay>):
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): TrainingPlanAdapter.TrainingPlanViewHolder {
+    ): TrainingPlanViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.training_menu_row, parent, false)
         return TrainingPlanViewHolder(view)
     }
 
     override fun onBindViewHolder(
-        holder: TrainingPlanAdapter.TrainingPlanViewHolder,
+        holder: TrainingPlanViewHolder,
         position: Int
     ) {
         val day = list[position]
@@ -32,6 +33,7 @@ class TrainingPlanAdapter (private val list: List<TranDay>):
             onLongClickListener?.onLongClick(position)
             true
         }
+        holder.btnSettings.setBackgroundColor(day.color.toColorInt())
     }
 
     override fun getItemCount(): Int {
