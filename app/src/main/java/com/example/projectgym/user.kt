@@ -22,7 +22,8 @@ class TranDay (
 class Exercise (
     var name: String,
     var sets: Int,
-    var muscle: String
+    var muscle: String,
+    var description: String
 )
 
 class CurDay (

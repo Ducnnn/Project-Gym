@@ -18,6 +18,7 @@ class MealsMenuFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
+
         return inflater.inflate(R.layout.fragment_meals_menu, container, false)
     }
 }
