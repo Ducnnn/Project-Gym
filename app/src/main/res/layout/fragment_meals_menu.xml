@@ -91,6 +91,7 @@
                 android:textSize="24sp" />
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_meals"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="0.6" />

@@ -62,7 +62,9 @@ dependencies {
     implementation(libs.googleid)
     implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.5.0")
     implementation("com.kizitonwose.calendar:view:2.7.0")
-    implementation(libs.firebase.firestore.ktx)
+    implementation(platform("com.google.firebase:firebase-bom:33.14.0"))
+    implementation("com.google.firebase:firebase-firestore")
+
 
 
 }
