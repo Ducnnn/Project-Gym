@@ -1,8 +1,6 @@
 package com.example.projectgym
 
-import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,34 +8,23 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.core.content.ContextCompat
 import androidx.core.view.children
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.kizitonwose.calendar.core.CalendarDay
-import com.kizitonwose.calendar.core.daysOfWeek
-import com.kizitonwose.calendar.view.CalendarView
-import com.kizitonwose.calendar.view.MonthDayBinder
 import com.kizitonwose.calendar.view.ViewContainer
 import java.time.YearMonth
 import java.time.format.TextStyle
 import java.util.Locale
 import androidx.core.graphics.toColorInt
 import androidx.core.view.get
-import com.example.projectgym.TrainingPlanAdapter.OnLongClickListener
-import com.kizitonwose.calendar.core.CalendarMonth
 import com.kizitonwose.calendar.core.Week
 import com.kizitonwose.calendar.core.WeekDay
 import com.kizitonwose.calendar.core.atStartOfMonth
-import com.kizitonwose.calendar.core.firstDayOfWeekFromLocale
-import com.kizitonwose.calendar.view.MonthHeaderFooterBinder
 import com.kizitonwose.calendar.view.WeekCalendarView
 import com.kizitonwose.calendar.view.WeekDayBinder
 import com.kizitonwose.calendar.view.WeekHeaderFooterBinder
 import kotlinx.datetime.DayOfWeek
-import org.w3c.dom.Text
 import java.time.LocalDate
-import kotlin.time.Duration.Companion.days
 
 
 class TrainingPlanMenuFragment : Fragment() {
@@ -86,7 +73,7 @@ class TrainingPlanMenuFragment : Fragment() {
         calendarView = view.findViewById(R.id.calendarView_training_plan)
 
         calendarViewBinder = WeekWorkoutToDayBinder()
-        calendarViewBinder.setClickListener(object: WeekWorkoutToDayBinder.OnClickListener{
+        calendarViewBinder.setClickListener(object: WeekWorkoutToDayBinder.OnClickListener {
             override fun onClick(data: WeekDay) {
                 selectDayForDate(data)
             }
