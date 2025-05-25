@@ -52,4 +52,9 @@
         android:name="com.example.projectgym.MealsConstructorFragment"
         android:label="fragment_meals_constructor"
         tools:layout="@layout/fragment_meals_constructor" />
+    <fragment
+        android:id="@+id/blankFragment"
+        android:name="com.example.projectgym.BlankFragment"
+        android:label="fragment_day_constructor"
+        tools:layout="@layout/fragment_day_constructor" />
 </navigation>
