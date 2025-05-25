@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import androidx.navigation.fragment.findNavController
 
 
 class MealsMenuFragment : Fragment() {
@@ -19,5 +21,13 @@ class MealsMenuFragment : Fragment() {
     ): View? {
 
         return inflater.inflate(R.layout.fragment_meals_menu, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val btn_add =view.findViewById<Button>(R.id.btn_add)
+        btn_add.setOnClickListener {
+            findNavController().navigate(R.id.action_mealsMenuFragment_to_mealsConstructorFragment)
+        }
     }
 }
