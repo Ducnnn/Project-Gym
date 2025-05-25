@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.projectgym"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
@@ -61,5 +61,8 @@ dependencies {
     implementation(libs.androidx.credentials.play.services.auth)
     implementation(libs.googleid)
     implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.5.0")
+    implementation("com.kizitonwose.calendar:view:2.7.0")
+
+
 
 }

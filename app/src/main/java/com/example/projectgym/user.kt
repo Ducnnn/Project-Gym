@@ -1,5 +1,7 @@
 package com.example.projectgym
 
+import kotlinx.datetime.DayOfWeek
+
 class User (
     var name: String,
     var age: Float,
@@ -12,6 +14,7 @@ class User (
 class TranDay (
     var name: String,
     var exercises: MutableList<Exercise> = mutableListOf<Exercise>(),
+    var color : String = "#FFFFFF"
 ) {
     fun addExercise(exercise : Exercise) {
         exercises.add(exercise)
