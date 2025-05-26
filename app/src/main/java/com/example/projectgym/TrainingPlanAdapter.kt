@@ -33,7 +33,7 @@ class TrainingPlanAdapter (private val list: List<TranDay>):
             onLongClickListener?.onLongClick(position)
             true
         }
-        holder.btnSettings.setBackgroundColor(day.color.toColorInt())
+        day.color?.let { holder.btnSettings.setBackgroundColor(it.toColorInt()) }
     }
 
     override fun getItemCount(): Int {
