@@ -33,8 +33,11 @@ class SignInActivity : AppCompatActivity() {
             auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     Log.d("signin", "signInUserWithEmail:success")
-                    val mainMenuActivity = Intent(this, MainMenuActivity::class.java)
-                    startActivity(mainMenuActivity)
+                    if (auth.currentUser != null) {
+                        val mainMenuActivity = Intent(this, MainMenuActivity::class.java)
+                        startActivity(mainMenuActivity)
+
+                    }
 
                 } else {
                     Log.w("signin", "signInUserWithEmail:failure", task.exception)
