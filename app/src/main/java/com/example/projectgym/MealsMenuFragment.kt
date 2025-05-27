@@ -6,7 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.annotation.ContentView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -27,6 +29,7 @@ class MealsMenuFragment : Fragment(), MealsMenuAdapter.RecyclerViewEvent {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
     }
 
     override fun onCreateView(
@@ -46,6 +49,15 @@ class MealsMenuFragment : Fragment(), MealsMenuAdapter.RecyclerViewEvent {
         val recyclerViewMeal = view.findViewById<RecyclerView>(R.id.recycler_meals)
         recyclerViewMeal.layoutManager = LinearLayoutManager(view.context)
         recyclerViewMeal.adapter = mealsMenuAdapter
+
+        fillProgressBars(list, view)
+
+        val proteinClick = view.findViewById<ProgressBar>(R.id.progress_proteins)
+        proteinClick.setOnClickListener{
+
+        }
+
+
 
     }
 
@@ -84,4 +96,31 @@ class MealsMenuFragment : Fragment(), MealsMenuAdapter.RecyclerViewEvent {
 
         alertDialog.show()
     }
+    private val proteinGoal = 300
+    private val fatsGoal = 500
+    private val carbsGoal = 600
+    private val caloriesGoal = 700
+
+    private fun fillProgressBars (meals: List<Meals>, view: View) {
+        val totalProtein = meals.sumOf { it.products.sumOf { product -> product.proteins } }
+        val totalFats = meals.sumOf { it.products.sumOf { product -> product.proteins }}
+        val totalCarbs = meals.sumOf { it.products.sumOf { product -> product.carbs } }
+        val totalCalories = meals.sumOf { it.products.sumOf { product -> product.calories } }
+
+        val proteinProgress = view.findViewById<ProgressBar>(R.id.progress_proteins)
+        val fatsProgress = view.findViewById<ProgressBar>(R.id.progress_fats)
+        val carbsProgress = view.findViewById<ProgressBar>(R.id.progress_carbohydrates)
+        val caloriesProgress = view.findViewById<ProgressBar>(R.id.progress_calories)
+
+        proteinProgress.max = proteinGoal.toInt()
+        fatsProgress.max = fatsGoal.toInt()
+        carbsProgress.max = carbsGoal.toInt()
+        caloriesProgress.max = caloriesGoal.toInt()
+
+        proteinProgress.progress = totalProtein.toInt().coerceAtMost(proteinGoal.toInt())
+        fatsProgress.progress = totalFats.toInt().coerceAtMost(fatsGoal.toInt())
+        carbsProgress.progress = totalCarbs.toInt().coerceAtMost(carbsGoal.toInt())
+        caloriesProgress.progress = totalCalories.toInt().coerceAtMost(caloriesGoal.toInt())
+    }
+
 }

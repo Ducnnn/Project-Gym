@@ -43,7 +43,7 @@
                 android:layout_margin="4dp"
                 android:layout_weight="0.25"
                 android:rotation="270"
-                android:progressTint="#0E32B3"/>
+                android:progressTint="#0E32B3" />
 
             <ProgressBar
                 style="@style/Widget.AppCompat.ProgressBar.Horizontal"
@@ -65,7 +65,7 @@
                 android:layout_margin="4dp"
                 android:layout_weight="0.25"
                 android:rotation="270"
-                android:progressTint="#F600FF"/>
+                android:progressTint="#F600FF" />
 
             <ProgressBar
                 style="@style/Widget.AppCompat.ProgressBar.Horizontal"
