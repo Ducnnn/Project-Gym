@@ -95,7 +95,7 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun isEmailValid(email: String): Boolean {
-        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
 
     private fun checkCredentials(email: String, password: String): Boolean {
