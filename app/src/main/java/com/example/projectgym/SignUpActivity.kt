@@ -58,8 +58,6 @@ class SignUpActivity : AppCompatActivity() {
                         Log.d("signup", "createUserWithEmail:success")
 
                         DatabaseInteractions().addUser(
-                            db,
-                            auth.currentUser?.uid.toString(),
                             email,
                             name,
                             com.google.firebase.firestore.FieldValue.serverTimestamp()
