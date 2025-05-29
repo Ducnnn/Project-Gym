@@ -58,8 +58,6 @@ class SignUpActivity : AppCompatActivity() {
                         Log.d("signup", "createUserWithEmail:success")
 
                         DatabaseInteractions().addUser(
-                            db,
-                            auth.currentUser?.uid.toString(),
                             email,
                             name,
                             com.google.firebase.firestore.FieldValue.serverTimestamp()
@@ -97,7 +95,7 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun isEmailValid(email: String): Boolean {
-        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
 
     private fun checkCredentials(email: String, password: String): Boolean {
