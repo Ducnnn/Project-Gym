@@ -1,13 +1,21 @@
 package com.example.projectgym
 
 import android.util.Log
+import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FieldValue
-import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.firestore
+import com.kizitonwose.calendar.core.WeekDay
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 
-class DatabaseInteractions {
+
+class DatabaseInteractions() {
+    private val db = Firebase.firestore
+    private val userId: String = FirebaseAuth.getInstance().currentUser?.uid.toString()
+    private val pathToUser = "users/$userId/"
     fun addUser(
-        db: FirebaseFirestore,
-        userId: String,
         email: String,
         displayName: String,
         createdAt: FieldValue
@@ -17,13 +25,45 @@ class DatabaseInteractions {
             "displayName" to displayName,
             "createdAt" to createdAt
         )
-            db.collection("users").document(userId)
-                .set(userData)
-                .addOnSuccessListener {
-                    Log.d("FIRESTORE", "User data successfully written for UID: $userId")
-                }
-                .addOnFailureListener { e ->
-                    Log.w("FIRESTORE", "Error writing user data for UID: $userId", e)
-                }
+        db.collection("users").document(userId)
+            .set(userData)
+            .addOnSuccessListener {
+                Log.d("FIRESTORE", "User data successfully written for UID: $userId")
+            }
+            .addOnFailureListener { e ->
+                Log.w("FIRESTORE", "Error writing user data for UID: $userId", e)
+            }
+    }
+
+    fun addDayToWeek(day: TranDay, date: WeekDay) {
+        val docRef = db.document("${pathToUser}TrainingDays/${date.date}")
+        val dayData = hashMapOf(
+            "color" to day.color,
+            "dayName" to day.name,
+            "dayOfWeek" to date.date.dayOfWeek
+        )
+        docRef.set(dayData).addOnSuccessListener { Log.i("addDayToWeek", "Success: ${date.date}") }
+
+    }
+
+    suspend fun getTrainingDay(date: WeekDay): TranDay {
+        val docPath = db.document("${pathToUser}TrainingDays/${date.date}")
+        val name: String?
+        val color: String?
+        return try {
+            val documentSnapshot = withContext(Dispatchers.IO) {
+                docPath.get().await()
+            }
+            if (documentSnapshot.exists()) {
+                name = documentSnapshot.getString("dayName")
+                color = documentSnapshot.getString("color")
+            } else {
+                name = "Rest"
+                color = "#ffa9a3"
+            }
+            return TranDay(name, color = color)
+        } catch (e: Exception) {
+            TranDay(null)
+        }
     }
 }

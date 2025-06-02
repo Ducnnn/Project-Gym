@@ -37,7 +37,11 @@
         android:id="@+id/trainingPlanMenuFragment"
         android:name="com.example.projectgym.TrainingPlanMenuFragment"
         android:label="fragment_training_plan_menu"
-        tools:layout="@layout/fragment_training_plan_menu" />
+        tools:layout="@layout/fragment_training_plan_menu" >
+        <action
+            android:id="@+id/action_trainingPlanMenuFragment_to_dayConstructorFragment"
+            app:destination="@id/dayConstructorFragment" />
+    </fragment>
     <fragment
         android:id="@+id/mealsMenuFragment"
         android:name="com.example.projectgym.MealsMenuFragment"
@@ -52,4 +56,9 @@
         android:name="com.example.projectgym.MealsConstructorFragment"
         android:label="fragment_meals_constructor"
         tools:layout="@layout/fragment_meals_constructor" />
+    <fragment
+        android:id="@+id/dayConstructorFragment"
+        android:name="com.example.projectgym.DayConstructorFragment"
+        android:label="fragment_day_constructor"
+        tools:layout="@layout/fragment_day_constructor" />
 </navigation>

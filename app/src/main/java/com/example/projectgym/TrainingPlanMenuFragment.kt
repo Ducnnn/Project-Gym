@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -17,12 +18,18 @@ import java.time.format.TextStyle
 import java.util.Locale
 import androidx.core.graphics.toColorInt
 import androidx.core.view.get
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import com.google.firebase.auth.FirebaseAuth
 import com.kizitonwose.calendar.core.Week
 import com.kizitonwose.calendar.core.WeekDay
 import com.kizitonwose.calendar.core.atStartOfMonth
 import com.kizitonwose.calendar.view.WeekCalendarView
 import com.kizitonwose.calendar.view.WeekDayBinder
 import com.kizitonwose.calendar.view.WeekHeaderFooterBinder
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 import kotlinx.datetime.DayOfWeek
 import java.time.LocalDate
 
@@ -30,14 +37,11 @@ import java.time.LocalDate
 class TrainingPlanMenuFragment : Fragment() {
     private lateinit var calendarView: WeekCalendarView
     private lateinit var calendarViewBinder: WeekWorkoutToDayBinder
+    private lateinit var userId: String
     private val chestDay = TranDay("Chest", color = "#2fe2f1")
     private val backDay = TranDay("Back", color = "#7902a0")
     private val legsDay = TranDay("Legs", color = "#07e0ab")
     private val lst = mutableListOf(chestDay, backDay, legsDay)
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,9 +50,10 @@ class TrainingPlanMenuFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_training_plan_menu, container, false)
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        userId = FirebaseAuth.getInstance().currentUser?.uid ?: ""
+
         val trainingPlanAdapter = TrainingPlanAdapter(lst)
         trainingPlanAdapter.setOnLongClickListener(object :
             TrainingPlanAdapter.OnLongClickListener {
@@ -71,9 +76,9 @@ class TrainingPlanMenuFragment : Fragment() {
         trainingPlanRecyclerView.adapter = trainingPlanAdapter
 
         calendarView = view.findViewById(R.id.calendarView_training_plan)
-
-        calendarViewBinder = WeekWorkoutToDayBinder()
-        calendarViewBinder.setClickListener(object: WeekWorkoutToDayBinder.OnClickListener {
+        val scope = lifecycleScope
+        calendarViewBinder = WeekWorkoutToDayBinder(scope)
+        calendarViewBinder.setClickListener(object : WeekWorkoutToDayBinder.OnClickListener {
             override fun onClick(data: WeekDay) {
                 selectDayForDate(data)
             }
@@ -105,9 +110,37 @@ class TrainingPlanMenuFragment : Fragment() {
                         }
                 }
             }
+        val btnCopyFromPrevWeek = view.findViewById<Button>(R.id.btn_copy_from_prev_week)
+
+        btnCopyFromPrevWeek.setOnClickListener {
+            val currentWeek = calendarView.findFirstVisibleWeek()
+            if (currentWeek != null) {
+                for (weekDay in currentWeek.days) {
+                    val lastDate = weekDay.date.minusDays(7)
+                    lifecycleScope.launch {
+                        val day = DatabaseInteractions().getTrainingDay(
+                            WeekDay(
+                                lastDate,
+                                weekDay.position
+                            )
+                        )
+                        if (day != TranDay(name = "Rest", color = "#ffa9a3")) {
+                            calendarViewBinder.setWorkoutToDay(weekDay, day)
+                        }
+                        calendarView.notifyDayChanged(weekDay)
+                    }
+                }
+            }
+        }
+
+        val btnAddDay = view.findViewById<Button>(R.id.btn_add_day)
+
+        btnAddDay.setOnClickListener {
+            findNavController().navigate(R.id.action_trainingPlanMenuFragment_to_dayConstructorFragment)
+        }
     }
 
-    class DayViewContainer(view: View) : ViewContainer(view) {
+    open class DayViewContainer(view: View) : ViewContainer(view) {
         val textView = view.findViewById<CircularTextView>(R.id.calendarDayText)
     }
 
@@ -115,7 +148,7 @@ class TrainingPlanMenuFragment : Fragment() {
         val titlesContainer = view as ViewGroup
     }
 
-    private fun selectDayForDate(data : WeekDay) {
+    private fun selectDayForDate(data: WeekDay) {
         val builder = AlertDialog.Builder(requireContext())
         builder.setTitle("Choose Day Option")
 
@@ -134,7 +167,7 @@ class TrainingPlanMenuFragment : Fragment() {
         alertDialog.show()
     }
 
-    private fun showExistingDaysPickerDialog(data : WeekDay){
+    private fun showExistingDaysPickerDialog(data: WeekDay) {
         if (lst.isEmpty()) {
             Toast.makeText(requireContext(), "No existing days found.", Toast.LENGTH_SHORT).show()
         }
@@ -142,7 +175,7 @@ class TrainingPlanMenuFragment : Fragment() {
         builder.setTitle("Pick an Existing Day")
         val dayNames = mutableListOf<String>()
         for (day in lst) {
-            dayNames.add(day.name)
+            day.name?.let { dayNames.add(it) }
         }
         val itemsAsCharSequenceArray = dayNames.toTypedArray<CharSequence>()
         builder.setItems(itemsAsCharSequenceArray) { dialogInterface, which ->
@@ -158,15 +191,16 @@ class TrainingPlanMenuFragment : Fragment() {
         itemPickerDialog.show()
     }
 
-    class WeekWorkoutToDayBinder(
-        private val mapDayToWorkout: MutableMap<WeekDay, TranDay> = mutableMapOf()
-    ) : WeekDayBinder<DayViewContainer> {
+    class WeekWorkoutToDayBinder(private val scope: CoroutineScope) :
+        WeekDayBinder<WeekWorkoutToDayBinder.TrainingPlanViewContainer> {
         private var onClickListener: OnClickListener? = null
-        override fun bind(container: DayViewContainer, data: WeekDay) {
-            if(!mapDayToWorkout.containsKey(data)){
-                mapDayToWorkout[data] = TranDay(name = "Rest", color="#ffa9a3")
+
+        override fun bind(container: TrainingPlanViewContainer, data: WeekDay) {
+            container.M_job = scope.launch {
+                val trainingDay = DatabaseInteractions().getTrainingDay(data)
+                container.textView.setStrokeColor(trainingDay.color)
             }
-            container.textView.setStrokeColor(mapDayToWorkout[data]?.color)
+
             container.textView.setSolidColor("#FFFFFF")
             container.textView.setStrokeWidth(6)
             container.textView.text = data.date.dayOfMonth.toString()
@@ -176,10 +210,10 @@ class TrainingPlanMenuFragment : Fragment() {
         }
 
         fun setWorkoutToDay(day: WeekDay, trainingDay: TranDay) {
-            mapDayToWorkout[day] = trainingDay
+            DatabaseInteractions().addDayToWeek(trainingDay, day)
         }
 
-        override fun create(view: View): DayViewContainer = DayViewContainer(view)
+        override fun create(view: View): TrainingPlanViewContainer = TrainingPlanViewContainer(view)
         fun setClickListener(listener: OnClickListener?) {
             this.onClickListener = listener
         }
@@ -188,5 +222,8 @@ class TrainingPlanMenuFragment : Fragment() {
             fun onClick(data: WeekDay)
         }
 
+        class TrainingPlanViewContainer(view: View) : DayViewContainer(view) {
+            var M_job: Job? = null
+        }
     }
 }

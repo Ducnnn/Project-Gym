@@ -85,7 +85,7 @@
                 tools:listitem="@layout/training_menu_row" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/btn_add_day"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="0.2"
