@@ -112,15 +112,15 @@ class MealsMenuFragment : Fragment(), MealsMenuAdapter.RecyclerViewEvent {
         val carbsProgress = view.findViewById<ProgressBar>(R.id.progress_carbohydrates)
         val caloriesProgress = view.findViewById<ProgressBar>(R.id.progress_calories)
 
-        proteinProgress.max = proteinGoal.toInt()
-        fatsProgress.max = fatsGoal.toInt()
-        carbsProgress.max = carbsGoal.toInt()
-        caloriesProgress.max = caloriesGoal.toInt()
+        proteinProgress.max = proteinGoal
+        fatsProgress.max = fatsGoal
+        carbsProgress.max = carbsGoal
+        caloriesProgress.max = caloriesGoal
 
-        proteinProgress.progress = totalProtein.toInt().coerceAtMost(proteinGoal.toInt())
-        fatsProgress.progress = totalFats.toInt().coerceAtMost(fatsGoal.toInt())
-        carbsProgress.progress = totalCarbs.toInt().coerceAtMost(carbsGoal.toInt())
-        caloriesProgress.progress = totalCalories.toInt().coerceAtMost(caloriesGoal.toInt())
+        proteinProgress.progress = totalProtein.toInt().coerceAtMost(proteinGoal)
+        fatsProgress.progress = totalFats.toInt().coerceAtMost(fatsGoal)
+        carbsProgress.progress = totalCarbs.toInt().coerceAtMost(carbsGoal)
+        caloriesProgress.progress = totalCalories.toInt().coerceAtMost(caloriesGoal)
     }
 
 }
