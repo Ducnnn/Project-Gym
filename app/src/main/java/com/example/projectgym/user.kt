@@ -1,8 +1,7 @@
 package com.example.projectgym
-
 import kotlinx.datetime.DayOfWeek
-
 class User(
+
     var name: String,
     var age: Float,
     var height: Float,
@@ -79,9 +78,11 @@ class Meals(
 
 class Products(
     var name: String,
-    var calories: Float,
-    var proteins: Float,
-    var fats: Float,
-    var carbs: Float
+    var calories: Double,
+    var proteins: Double,
+    var fats: Double,
+    var carbs: Double
 )
+
+
 
