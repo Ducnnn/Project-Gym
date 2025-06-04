@@ -16,7 +16,6 @@
 
 
 
-
             <TextView
                 android:layout_weight="0.1"
                 android:id="@+id/current_day"
