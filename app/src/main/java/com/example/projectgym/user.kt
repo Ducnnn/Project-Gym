@@ -10,10 +10,10 @@ class User(
     var program: MutableList<TranDay>
 )
 
-class TranDay(
-    var name: String?,
-    var exercises: MutableList<Exercise> = mutableListOf<Exercise>(),
-    var color: String? = "#FFFFFF"
+data class TranDay(
+    var name: String? = null,
+    var exercises: MutableList<Exercise> = mutableListOf(),
+    var color: String? = null
 ) {
     init {
         if (this.name == null) {
@@ -24,9 +24,8 @@ class TranDay(
             this.color = "#ffa9a3"
         }
     }
-    fun addExercise(exercise: Exercise) {
-        exercises.add(exercise)
-    }
+
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
@@ -39,16 +38,21 @@ class TranDay(
 
         return true
     }
+
     override fun hashCode(): Int {
         return javaClass.hashCode()
     }
 }
 
 class Exercise(
-    var name: String,
-    var sets: Int,
-    var muscle: String
-)
+    var name: String = "",
+    var muscle: String = "Chest",
+    var description: String = ""
+) {
+    override fun toString() : String {
+        return "name:$name, muscle:$muscle, description:$description"
+    }
+}
 
 class CurDay(
     // var trainingDay

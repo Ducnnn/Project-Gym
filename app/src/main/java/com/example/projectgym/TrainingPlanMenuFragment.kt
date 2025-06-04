@@ -1,5 +1,6 @@
 package com.example.projectgym
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -30,6 +31,7 @@ import com.kizitonwose.calendar.view.WeekHeaderFooterBinder
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import kotlinx.datetime.DayOfWeek
 import java.time.LocalDate
 
@@ -38,10 +40,7 @@ class TrainingPlanMenuFragment : Fragment() {
     private lateinit var calendarView: WeekCalendarView
     private lateinit var calendarViewBinder: WeekWorkoutToDayBinder
     private lateinit var userId: String
-    private val chestDay = TranDay("Chest", color = "#2fe2f1")
-    private val backDay = TranDay("Back", color = "#7902a0")
-    private val legsDay = TranDay("Legs", color = "#07e0ab")
-    private val lst = mutableListOf(chestDay, backDay, legsDay)
+    private var lst = mutableListOf<TranDay>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,11 +49,18 @@ class TrainingPlanMenuFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_training_plan_menu, container, false)
     }
 
+    override fun onResume() {
+        super.onResume()
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         userId = FirebaseAuth.getInstance().currentUser?.uid ?: ""
 
-        val trainingPlanAdapter = TrainingPlanAdapter(lst)
+        val trainingPlanAdapter = runBlocking {
+            lst = DatabaseInteractions().getTrainingProgram().toMutableList()
+            TrainingPlanAdapter(lst)
+        }
         trainingPlanAdapter.setOnLongClickListener(object :
             TrainingPlanAdapter.OnLongClickListener {
             override fun onLongClick(position: Int) {
@@ -62,6 +68,9 @@ class TrainingPlanMenuFragment : Fragment() {
                     .setMessage("Are you sure you want to delete this day?  ")
                     .setTitle("Deletion of a Day")
                     .setPositiveButton("YES") { _, _ ->
+                        lifecycleScope.launch {
+                            DatabaseInteractions().deleteCustomDayFromTrainingProgram(lst[position])
+                        }
                         lst.removeAt(position)
                         trainingPlanAdapter.notifyItemRemoved(position)
                         trainingPlanAdapter.notifyItemRangeChanged(position, lst.size)
@@ -124,9 +133,7 @@ class TrainingPlanMenuFragment : Fragment() {
                                 weekDay.position
                             )
                         )
-                        if (day != TranDay(name = "Rest", color = "#ffa9a3")) {
-                            calendarViewBinder.setWorkoutToDay(weekDay, day)
-                        }
+                        calendarViewBinder.setWorkoutToDay(weekDay, day)
                         calendarView.notifyDayChanged(weekDay)
                     }
                 }
@@ -157,9 +164,9 @@ class TrainingPlanMenuFragment : Fragment() {
             dialogInterface.dismiss()
         }
 
-        builder.setNegativeButton("Custom Day") { dialogInterface, _ ->
-            Toast.makeText(requireContext(), "Custom Day clicked", Toast.LENGTH_SHORT).show()
-            // TODO: Implement logic for "Custom Day"
+        builder.setNegativeButton("Rest Day") { dialogInterface, _ ->
+            calendarViewBinder.setWorkoutToDay(data, TranDay(name = "Rest", color = "#ffa9a3"))
+            calendarView.notifyDayChanged(data)
             dialogInterface.dismiss()
         }
 
@@ -191,6 +198,7 @@ class TrainingPlanMenuFragment : Fragment() {
         itemPickerDialog.show()
     }
 
+
     class WeekWorkoutToDayBinder(private val scope: CoroutineScope) :
         WeekDayBinder<WeekWorkoutToDayBinder.TrainingPlanViewContainer> {
         private var onClickListener: OnClickListener? = null
@@ -210,7 +218,11 @@ class TrainingPlanMenuFragment : Fragment() {
         }
 
         fun setWorkoutToDay(day: WeekDay, trainingDay: TranDay) {
-            DatabaseInteractions().addDayToWeek(trainingDay, day)
+            if (trainingDay == TranDay(name = "Rest", color = "#ffa9a3")) {
+                DatabaseInteractions().deleteTrainingDay(day)
+            } else {
+                DatabaseInteractions().addDayToWeek(trainingDay, day)
+            }
         }
 
         override fun create(view: View): TrainingPlanViewContainer = TrainingPlanViewContainer(view)

@@ -11,7 +11,7 @@ import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 
 
-class DatabaseInteractions() {
+class DatabaseInteractions {
     private val db = Firebase.firestore
     private val userId: String = FirebaseAuth.getInstance().currentUser?.uid.toString()
     private val pathToUser = "users/$userId/"
@@ -65,5 +65,47 @@ class DatabaseInteractions() {
         } catch (e: Exception) {
             TranDay(null)
         }
+    }
+
+    fun addCustomDayToTrainingProgram(day: TranDay) {
+        val docRef = db.document("${pathToUser}CustomDays/${day.name}")
+
+        docRef.set(day).addOnSuccessListener { Log.i("addCustomDay", "Success") }
+    }
+    fun deleteCustomDayFromTrainingProgram(day: TranDay) {
+        val docRef = db.document("${pathToUser}CustomDays/${day.name}")
+
+        docRef.delete().addOnSuccessListener { Log.i("deleteCustomDay", "Success") }
+    }
+    suspend fun getTrainingProgram(): List<TranDay> {
+        val docRef = db.collection("${pathToUser}CustomDays")
+        val result = mutableListOf<TranDay>()
+
+        try {
+            val documentQuery = withContext(Dispatchers.IO) {
+                docRef.get().await()
+            }
+            if (documentQuery.isEmpty) {
+                return emptyList()
+            }
+            for (document in documentQuery) {
+                try {
+                    val day = document.toObject(TranDay::class.java)
+                    result.add(day)
+                    Log.d("FIRESTORE_COROUTINE", "Fetched day: ${day.name}, ID: ${document.id}")
+                } catch (e: Exception) {
+                    Log.e("FIRESTORE_COROUTINE", "Error converting document ${document.id}", e)
+                }
+            }
+
+        } catch (e : Exception) {
+            Log.e("Database", "Failed to get program list")
+        }
+
+        return result
+    }
+    fun deleteTrainingDay(date: WeekDay){
+        val docPath = db.document("${pathToUser}TrainingDays/${date.date}")
+        docPath.delete()
     }
 }
