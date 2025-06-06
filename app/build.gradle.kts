@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.projectgym"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
@@ -64,4 +64,12 @@ dependencies {
     implementation("androidx.cardview:cardview:1.0.0")
     implementation("com.github.blackfizz:eazegraph:1.2.2@aar")
     implementation("com.nineoldandroids:library:2.4.0")
+
+    implementation("com.kizitonwose.calendar:view:2.7.0")
+    implementation ("com.github.Dhaval2404:ColorPicker:2.3")
+    implementation(platform("com.google.firebase:firebase-bom:33.14.0"))
+    implementation("com.google.firebase:firebase-firestore")
+    implementation("com.android.volley:volley:1.2.1")
+    implementation("com.google.code.gson:gson:2.8.9")
+
 }

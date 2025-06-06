@@ -8,8 +8,6 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.auth.FirebaseAuth
 
 class SignInActivity : AppCompatActivity() {
@@ -35,8 +33,11 @@ class SignInActivity : AppCompatActivity() {
             auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     Log.d("signin", "signInUserWithEmail:success")
-                    val mainMenuActivity = Intent(this, MainMenuActivity::class.java)
-                    startActivity(mainMenuActivity)
+                    if (auth.currentUser != null) {
+                        val mainMenuActivity = Intent(this, MainMenuActivity::class.java)
+                        startActivity(mainMenuActivity)
+
+                    }
 
                 } else {
                     Log.w("signin", "signInUserWithEmail:failure", task.exception)

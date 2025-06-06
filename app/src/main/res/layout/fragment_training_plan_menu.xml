@@ -4,50 +4,68 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     tools:context=".TrainingPlanMenuFragment">
-
-    <!-- TODO: delete this textview -->
-
-    <!-- TODO: delete this constraint layout and put calendar view inside the constraint layout below change the height and width of calendar view -->
-
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="310dp"
-            android:layout_height="217dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginEnd="50dp"
-            android:layout_marginBottom="508dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:id="@+id/calendarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="24dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/circular_rectangle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <CalendarView
-                android:id="@+id/calendarView"
-                android:layout_width="match_parent"
-                android:layout_height="220dp"
+            <Button
+                android:id="@+id/btn_copy_from_prev_week"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="Copy from the previous week"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <com.kizitonwose.calendar.view.WeekCalendarView
+                android:id="@+id/calendarView_training_plan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="4dp"
+
+                android:layout_marginBottom="4dp"
+                app:cv_dayViewResource="@layout/training_plan_calendar_day_layout"
+                app:cv_outDateStyle="endOfGrid"
+                app:cv_scrollPaged="true"
+                app:cv_weekHeaderResource="@layout/month_name_container"
+                app:layout_constraintBottom_toTopOf="@+id/btn_copy_from_prev_week"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="400dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="30dp"
+            android:id="@+id/linearLayout3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="50dp"
+            android:layout_marginBottom="50dp"
             android:orientation="vertical"
             android:weightSum="1.0"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/calendarLayout">
 
 
             <TextView
@@ -55,24 +73,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="0.2"
-                android:text="List of Days"
                 android:gravity="center"
-                android:textSize="24sp"/>
+                android:text="List of Days"
+                android:textSize="24sp" />
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerview_training_plan"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="0.6" />
+                android:layout_weight="0.6"
+                tools:listitem="@layout/training_menu_row" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/btn_add_day"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="0.2"
                 android:text="Button" />
 
         </LinearLayout>
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

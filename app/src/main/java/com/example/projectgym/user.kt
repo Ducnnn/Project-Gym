@@ -1,6 +1,9 @@
 package com.example.projectgym
 
-class User (
+import kotlinx.datetime.DayOfWeek
+
+class User(
+
     var name: String,
     var age: Float,
     var height: Float,
@@ -9,36 +12,64 @@ class User (
     var program: MutableList<TranDay>
 )
 
-class TranDay (
-    var name: String,
-    var exercises: MutableList<Exercise> = mutableListOf<Exercise>(),
+data class TranDay(
+    var name: String? = null,
+    var exercises: MutableList<Exercise> = mutableListOf(),
+    var color: String? = null
 ) {
-    fun addExercise(exercise : Exercise) {
-        exercises.add (exercise)
+    init {
+        if (this.name == null) {
+            this.name = "Rest"
+
+        }
+        if (this.color == null) {
+            this.color = "#ffa9a3"
+        }
     }
 
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as TranDay
+
+        if (name != other.name) return false
+        if (exercises != other.exercises) return false
+        if (color != other.color) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        return javaClass.hashCode()
+    }
 }
 
-class Exercise (
-    var name: String,
-    var sets: Int,
-    var muscle: String
+class Exercise(
+    var name: String = "",
+    var muscle: String = "Chest",
+    var description: String = "",
+    var sets: MutableList<Set> = mutableListOf(Set(0, 0)),
+    var isCompleted : Boolean = false
 )
 
-class CurDay (
+class Set(var reps: Int = 0, var weight: Int = 0)
+
+class CurDay(
     // var trainingDay
     // val date
 )
 
-class ListMeals (
+class ListMeals(
     var meals: MutableList<Meals> = mutableListOf()
 ) {
     fun addMeal(meal: Meals) {
-        meals.add (meal)
+        meals.add(meal)
     }
 }
 
-class Meals (
+class Meals(
     var name: String,
     var products: MutableList<Products> = mutableListOf()
 ) {
@@ -47,11 +78,13 @@ class Meals (
     }
 }
 
-class Products (
+class Products(
     var name: String,
-    var calories: Float,
-    var proteins: Float,
-    var fats: Float,
-    var carbs: Float
+    var calories: Double,
+    var proteins: Double,
+    var fats: Double,
+    var carbs: Double
 )
+
+
 

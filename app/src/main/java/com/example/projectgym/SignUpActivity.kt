@@ -3,7 +3,6 @@ package com.example.projectgym
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.util.Log.VERBOSE
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -12,10 +11,11 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.auth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.firestore
 
 class SignUpActivity : AppCompatActivity() {
-
+    private lateinit var db: FirebaseFirestore
     private lateinit var auth: FirebaseAuth
     private val SIGN_UP_MESSAGE_PASSWORD_WRONG =
         "Password must be at least 6 characters long and may contain only uppercase letters, lowercase letters, numbers and symbols: ~`!@#\$%^&*()_-+={[}]|\\:;\"'<,>.?/"
@@ -31,20 +31,22 @@ class SignUpActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_sign_up)
         auth = FirebaseAuth.getInstance()
+        db = Firebase.firestore
         val btn = findViewById<Button>(R.id.btn_signup)
         val editTextEmail = findViewById<EditText>(R.id.edtext_email_signUp)
         val editTextPassword = findViewById<EditText>(R.id.edtext_password_signUp)
+        val editTextName = findViewById<EditText>(R.id.edtext_name)
         btn.setOnClickListener {
-//          TODO: implement a name adding feature
+            val name = editTextName.text.toString()
             val email = editTextEmail.text.toString()
             val password = editTextPassword.text.toString()
-            createAccount(email, password)
+            createAccount(email, password, name)
         }
 
     }
 
 
-    private fun createAccount(email: String, password: String) {
+    private fun createAccount(email: String, password: String, name: String) {
         if (!checkCredentials(email, password)) {
             return
         }
@@ -54,6 +56,14 @@ class SignUpActivity : AppCompatActivity() {
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
                         Log.d("signup", "createUserWithEmail:success")
+
+                        DatabaseInteractions().addUser(
+                            email,
+                            name,
+                            com.google.firebase.firestore.FieldValue.serverTimestamp()
+                        )
+
+
                         val mainMenuActivity = Intent(this, MainMenuActivity::class.java)
                         startActivity(mainMenuActivity)
                     } else {
@@ -65,9 +75,11 @@ class SignUpActivity : AppCompatActivity() {
                         ).show()
                     }
                 }
+
         } catch (e: Exception) {
             Log.w("signup", "Exception: $e")
         }
+
     }
 
     private fun isPasswordValid(password: String): Boolean {
@@ -83,7 +95,7 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun isEmailValid(email: String): Boolean {
-        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
 
     private fun checkCredentials(email: String, password: String): Boolean {

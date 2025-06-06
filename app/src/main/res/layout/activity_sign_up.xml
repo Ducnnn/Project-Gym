@@ -45,7 +45,7 @@
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText" />
+        app:layout_constraintTop_toBottomOf="@+id/edtext_name" />
 
     <TextView
         android:id="@+id/textView"
@@ -75,15 +75,15 @@
         app:layout_constraintTop_toBottomOf="@+id/edtext_password_signUp" />
 
     <EditText
-        android:id="@+id/editTextText"
+        android:id="@+id/edtext_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="20dp"
         android:ems="10"
+        android:hint="Enter Name"
         android:inputType="text"
-        android:text="@string/name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />

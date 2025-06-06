@@ -37,10 +37,32 @@
         android:id="@+id/trainingPlanMenuFragment"
         android:name="com.example.projectgym.TrainingPlanMenuFragment"
         android:label="fragment_training_plan_menu"
-        tools:layout="@layout/fragment_training_plan_menu" />
+        tools:layout="@layout/fragment_training_plan_menu" >
+        <action
+            android:id="@+id/action_trainingPlanMenuFragment_to_dayConstructorFragment"
+            app:destination="@id/dayConstructorFragment" />
+    </fragment>
     <fragment
         android:id="@+id/mealsMenuFragment"
         android:name="com.example.projectgym.MealsMenuFragment"
         android:label="fragment_meals_menu"
-        tools:layout="@layout/fragment_meals_menu" />
+        tools:layout="@layout/fragment_meals_menu" >
+        <action
+            android:id="@+id/action_mealsMenuFragment_to_mealsConstructorFragment"
+            app:destination="@id/mealsConstructorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mealsConstructorFragment"
+        android:name="com.example.projectgym.MealsConstructorFragment"
+        android:label="fragment_meals_constructor"
+        tools:layout="@layout/fragment_meals_constructor" />
+    <fragment
+        android:id="@+id/dayConstructorFragment"
+        android:name="com.example.projectgym.DayConstructorFragment"
+        android:label="fragment_day_constructor"
+        tools:layout="@layout/fragment_day_constructor" >
+        <action
+            android:id="@+id/action_dayConstructorFragment_to_trainingPlanMenuFragment"
+            app:destination="@id/trainingPlanMenuFragment" />
+    </fragment>
 </navigation>
