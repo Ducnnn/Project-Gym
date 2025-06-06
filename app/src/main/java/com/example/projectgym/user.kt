@@ -1,5 +1,7 @@
 package com.example.projectgym
+
 import kotlinx.datetime.DayOfWeek
+
 class User(
 
     var name: String,
@@ -47,12 +49,12 @@ data class TranDay(
 class Exercise(
     var name: String = "",
     var muscle: String = "Chest",
-    var description: String = ""
-) {
-    override fun toString() : String {
-        return "name:$name, muscle:$muscle, description:$description"
-    }
-}
+    var description: String = "",
+    var sets: MutableList<Set> = mutableListOf(Set(0, 0)),
+    var isCompleted : Boolean = false
+)
+
+class Set(var reps: Int = 0, var weight: Int = 0)
 
 class CurDay(
     // var trainingDay

@@ -37,50 +37,44 @@ class DatabaseInteractions {
 
     fun addDayToWeek(day: TranDay, date: WeekDay) {
         val docRef = db.document("${pathToUser}TrainingDays/${date.date}")
-        val dayData = hashMapOf(
-            "color" to day.color,
-            "dayName" to day.name,
-            "dayOfWeek" to date.date.dayOfWeek
-        )
-        docRef.set(dayData).addOnSuccessListener { Log.i("addDayToWeek", "Success: ${date.date}") }
-
+        try {
+            docRef.set(day).addOnSuccessListener { Log.i("addDayToWeek", "Success: ${date.date}") }
+        } catch (e : Exception){
+            Log.e("Database addDayToWeek", "Failed to add day, exception: ${e.message}")
+        }
     }
 
     suspend fun getTrainingDay(date: WeekDay): TranDay {
         val docPath = db.document("${pathToUser}TrainingDays/${date.date}")
-        val name: String?
-        val color: String?
         return try {
             val documentSnapshot = withContext(Dispatchers.IO) {
                 docPath.get().await()
             }
             if (documentSnapshot.exists()) {
-                name = documentSnapshot.getString("dayName")
-                color = documentSnapshot.getString("color")
-            } else {
-                name = "Rest"
-                color = "#ffa9a3"
+               val trainingDay = documentSnapshot.toObject(TranDay::class.java)
+                if (trainingDay != null){
+                    return trainingDay
+                }
             }
-            return TranDay(name, color = color)
+            TranDay("Rest", color = "#ffa9a3")
         } catch (e: Exception) {
-            TranDay(null)
+            TranDay("Rest", color = "#ffa9a3")
         }
     }
 
     fun addCustomDayToTrainingProgram(day: TranDay) {
         val docRef = db.document("${pathToUser}CustomDays/${day.name}")
-
         docRef.set(day).addOnSuccessListener { Log.i("addCustomDay", "Success") }
     }
+
     fun deleteCustomDayFromTrainingProgram(day: TranDay) {
         val docRef = db.document("${pathToUser}CustomDays/${day.name}")
-
         docRef.delete().addOnSuccessListener { Log.i("deleteCustomDay", "Success") }
     }
+
     suspend fun getTrainingProgram(): List<TranDay> {
         val docRef = db.collection("${pathToUser}CustomDays")
         val result = mutableListOf<TranDay>()
-
         try {
             val documentQuery = withContext(Dispatchers.IO) {
                 docRef.get().await()
@@ -97,15 +91,19 @@ class DatabaseInteractions {
                     Log.e("FIRESTORE_COROUTINE", "Error converting document ${document.id}", e)
                 }
             }
-
         } catch (e : Exception) {
             Log.e("Database", "Failed to get program list")
         }
-
         return result
     }
+
     fun deleteTrainingDay(date: WeekDay){
         val docPath = db.document("${pathToUser}TrainingDays/${date.date}")
         docPath.delete()
+    }
+
+    fun updateNumberOfSets(date: WeekDay, exercises : MutableList<Exercise>){
+        val docPath = db.document("${pathToUser}TrainingDays/${date.date}")
+        docPath.update("exercises", exercises)
     }
 }
