@@ -61,5 +61,7 @@ dependencies {
     implementation(libs.androidx.credentials.play.services.auth)
     implementation(libs.googleid)
     implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.5.0")
-
+    implementation("androidx.cardview:cardview:1.0.0")
+    implementation("com.github.blackfizz:eazegraph:1.2.2@aar")
+    implementation("com.nineoldandroids:library:2.4.0")
 }
