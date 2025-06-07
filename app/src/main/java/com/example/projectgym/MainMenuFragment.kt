@@ -67,22 +67,19 @@ class MainMenuFragment : Fragment() {
         val currentYear = YearMonth.now().year
         val startMonth = YearMonth.of(currentYear, 1)
         val endMonth = YearMonth.of(currentYear, 12)
-        // For a true year view, you might need to adjust how months are displayed
-        // or use a more specific year view if the library version has one.
-        // This setup will show month by month, but styled like GitHub.
 
-        val daysOfWeek = daysOfWeek() // Or provide your own, e.g., starting Monday
+
+        val daysOfWeek = daysOfWeek()
 
         attendanceCalendarView.setup(startMonth, endMonth, daysOfWeek.first())
         attendanceCalendarView.scrollToMonth(YearMonth.now())
         attendanceCalendarView.dayBinder = object : MonthDayBinder<DayViewContainer> {
-            // Called to create a new instance of DayViewContainer.
-            // The R.layout.calendar_day_github_style is inflated for each day cell.
+
             override fun create(view: View) = DayViewContainer(view)
 
-            // Called to bind data to an existing instance of DayViewContainer.
+
             override fun bind(container: DayViewContainer, data: CalendarDay) {
-                container.day = data // Keep a reference to the day
+                container.day = data
 
                 val dayView = container.dayView
 
@@ -91,32 +88,23 @@ class MainMenuFragment : Fragment() {
                     dayView.background = ContextCompat.getDrawable(dayView.context, bgDrawableRes)
                     dayView.visibility = View.VISIBLE
                 } else {
-                    // Dates belonging to the Cprevious or next Cmonth are hidden or styled differently.
-                    // For GitHub style, these are usually just empty/default colored.
-                    // If your cv_outDateStyle="endOfGrid" or "none", these might not even be passed here often.
                     dayView.background = ContextCompat.getDrawable(
                         dayView.context,
                         R.drawable.attendance_day_bg_default
                     )
-                    // Or make them invisible if you prefer:
-                    // dayView.visibility = View.INVISIBLE
                 }
             }
         }
     }
 
     class DayViewContainer(view: View) : ViewContainer(view) {
-        val dayView: View =
-            view.findViewById(R.id.dayView) // The colored square from calendar_day_github_style.xml
-        lateinit var day: CalendarDay // Will be set when binding
+        val dayView: View = view.findViewById(R.id.dayView)
+        lateinit var day: CalendarDay
 
         init {
-            // You can set an OnClickListener for each day if needed
+
             view.setOnClickListener {
-//                if (day.position == DayPosition.MonthDate) { // Only for dates in the current month
-//                    val level = contributionData[day.date] ?: 0
-                // Log.d("CalendarClick", "Clicked ${day.date}, Level: $level")
-                // You could show a Toast or more details here
+
             }
         }
     }
