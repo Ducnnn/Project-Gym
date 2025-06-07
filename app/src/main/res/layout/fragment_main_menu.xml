@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     tools:context=".MainMenuFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -33,12 +34,12 @@
             android:id="@+id/first_inner_layout"
             android:layout_width="match_parent"
             android:layout_height="124dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/layout_bg"
             app:layout_constraintBottom_toTopOf="@+id/chart_layout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/date_and_training_day"
-            android:layout_margin="5dp"
-            android:background="@drawable/layout_bg">
+            app:layout_constraintTop_toBottomOf="@id/date_and_training_day">
 
             <Button
                 android:id="@+id/program_button"
@@ -68,21 +69,13 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/chart_layout"
             android:layout_width="match_parent"
-            android:layout_height="195dp"
+            android:layout_height="155dp"
             android:layout_margin="5dp"
+            android:background="@drawable/layout_bgg"
             app:layout_constraintBottom_toTopOf="@+id/calendar_container"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/first_inner_layout"
-            android:background="@drawable/layout_bgg">
-            <!-- TODO: Add pie chart or custom view here -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:weightSum="2">
-
-            <!--Pie chart to display the data-->
+            app:layout_constraintTop_toBottomOf="@id/first_inner_layout">
 
 
             <ImageView
@@ -102,46 +95,52 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <!-- Calendar View Container -->
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/calendar_container"
             android:layout_width="match_parent"
-            android:layout_height="230dp"
+            android:layout_height="270dp"
             android:layout_margin="5dp"
             android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="4dp"
             android:layout_marginBottom="13dp"
+            android:background="@drawable/layout_bg"
             app:layout_constraintBottom_toTopOf="@+id/profile_section"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/chart_layout"
-            android:background="@drawable/layout_bg">
+            app:layout_constraintTop_toBottomOf="@+id/chart_layout">
 
-            <CalendarView
-                android:id="@+id/calendar"
+            <com.kizitonwose.calendar.view.CalendarView
+                android:id="@+id/calendarview_attendance"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:background="@drawable/layout_bg"
+                android:layout_height="0dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                app:cv_dayViewResource="@layout/attendance_calendar_day_layout"
+                app:cv_orientation="horizontal"
+                app:cv_outDateStyle="endOfGrid"
+                app:cv_scrollPaged="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintTop_toTopOf="parent" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <!-- Profile Info Section -->
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/profile_section"
             android:layout_width="match_parent"
             android:layout_height="90dp"
             android:layout_margin="5dp"
+            android:background="@drawable/layout_bg"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/calendar_container"
-            android:background="@drawable/layout_bg">
+            app:layout_constraintTop_toBottomOf="@id/calendar_container">
 
             <TextView
                 android:id="@+id/age"

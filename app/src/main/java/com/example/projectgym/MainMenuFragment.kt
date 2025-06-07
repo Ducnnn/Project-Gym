@@ -1,8 +1,6 @@
 package com.example.projectgym
 
-import android.graphics.drawable.LayerDrawable
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,21 +8,24 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.kizitonwose.calendar.core.CalendarDay
+import com.kizitonwose.calendar.core.DayPosition
+import com.kizitonwose.calendar.core.daysOfWeek
+import com.kizitonwose.calendar.view.CalendarView
+import com.kizitonwose.calendar.view.MonthDayBinder
+import com.kizitonwose.calendar.view.ViewContainer
 import java.text.SimpleDateFormat
+import java.time.YearMonth
 import java.util.Calendar
 import java.util.Locale
 
 
 class MainMenuFragment : Fragment() {
-    private lateinit var imageViewWaterBottle: ImageView
-    private var bottleLayerDrawable: LayerDrawable? = null
-    private var currentWaterLevelPercentage: Int = 0
-        private set // Makes the setter private, only changeable within this class
+    private lateinit var attendanceCalendarView: CalendarView
 
-    private val isWaterBottleFull: Boolean // Read-only property
-        get() = currentWaterLevelPercentage >= 100
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -41,7 +42,7 @@ class MainMenuFragment : Fragment() {
         val dateFormat = SimpleDateFormat("MMM, dd", locale).format(calendar)
         tvDateAndTrainingDay.text = dateFormat
         val bottle = view.findViewById<ImageView>(R.id.imageView_water_bottle)
-        val level = 7000;   // pct goes from 0 to 100
+        val level = 7000;
         bottle.background.setLevel(level)
 
         val btnProgram = view.findViewById<Button>(R.id.program_button)
@@ -61,78 +62,63 @@ class MainMenuFragment : Fragment() {
         mealsLayout.setOnClickListener {
             findNavController().navigate(R.id.action_mainMenuFragment_to_mealsMenuFragment)
         }
-        // --- Water Bottle Initialization and Interaction ---
-        // 1. Find the ImageView for the water bottle
-//        try { // Added try-catch for safety during initialization
-//            imageViewWaterBottle = view.findViewById(R.id.imageView_water_bottle)
-//
-//            // 2. Get the LayerDrawable from the ImageView
-//            val drawable = imageViewWaterBottle.drawable
-//            if (drawable is LayerDrawable) {
-//                bottleLayerDrawable = drawable
-//                // 3. Set an initial water level (e.g., 0% or load from saved state)
-//                setWaterLevelPercentage(0) // Start empty
-//                Log.d("MainMenuFragment", "Water bottle initialized. Current level: $currentWaterLevelPercentage%")
-//            } else {
-//                Log.e("MainMenuFragment", "imageViewWaterBottle's drawable is NOT a LayerDrawable or is null. " +
-//                        "ID found: ${true}, Drawable type: ${drawable?.javaClass?.simpleName}")
-//            }
-//        } catch (e: Exception) {
-//            Log.e("MainMenuFragment", "Error finding or initializing imageViewWaterBottle (R.id.imageView_water_bottle): ${e.message}")
-//            // Handle cases where the ImageView might not be present or other setup issues
-//        }
-//
-//
-//        // 4. Set up the click listener for mealsLayout to ALSO update water level
-//        mealsLayout.setOnClickListener {
-//            // Update water level (example: add 20%)
-//            val newLevel = (currentWaterLevelPercentage + 20).coerceAtMost(100)
-//            setWaterLevelPercentage(newLevel)
-//
-//            if (isWaterBottleFull) {
-//                Log.d("MainMenuFragment", "mealsLayout Clicked: Water bottle is now full!")
-//            } else {
-//                Log.d("MainMenuFragment", "mealsLayout Clicked: Water bottle level: $currentWaterLevelPercentage%")
-//            }
-//
-//            // Still navigate to meals if that's the desired behavior
-//            findNavController().navigate(R.id.action_mainMenuFragment_to_mealsMenuFragment)
-//        }
-        // --- End Water Bottle Initialization and Interaction ---
+        attendanceCalendarView = view.findViewById(R.id.calendarview_attendance)
+
+        val currentYear = YearMonth.now().year
+        val startMonth = YearMonth.of(currentYear, 1)
+        val endMonth = YearMonth.of(currentYear, 12)
+        // For a true year view, you might need to adjust how months are displayed
+        // or use a more specific year view if the library version has one.
+        // This setup will show month by month, but styled like GitHub.
+
+        val daysOfWeek = daysOfWeek() // Or provide your own, e.g., starting Monday
+
+        attendanceCalendarView.setup(startMonth, endMonth, daysOfWeek.first())
+        attendanceCalendarView.scrollToMonth(YearMonth.now())
+        attendanceCalendarView.dayBinder = object : MonthDayBinder<DayViewContainer> {
+            // Called to create a new instance of DayViewContainer.
+            // The R.layout.calendar_day_github_style is inflated for each day cell.
+            override fun create(view: View) = DayViewContainer(view)
+
+            // Called to bind data to an existing instance of DayViewContainer.
+            override fun bind(container: DayViewContainer, data: CalendarDay) {
+                container.day = data // Keep a reference to the day
+
+                val dayView = container.dayView
+
+                if (data.position == DayPosition.MonthDate) {
+                    val bgDrawableRes = R.drawable.attendance_day_bg_default
+                    dayView.background = ContextCompat.getDrawable(dayView.context, bgDrawableRes)
+                    dayView.visibility = View.VISIBLE
+                } else {
+                    // Dates belonging to the Cprevious or next Cmonth are hidden or styled differently.
+                    // For GitHub style, these are usually just empty/default colored.
+                    // If your cv_outDateStyle="endOfGrid" or "none", these might not even be passed here often.
+                    dayView.background = ContextCompat.getDrawable(
+                        dayView.context,
+                        R.drawable.attendance_day_bg_default
+                    )
+                    // Or make them invisible if you prefer:
+                    // dayView.visibility = View.INVISIBLE
+                }
+            }
+        }
     }
 
-    // --- Water Bottle Logic Function ---
-    /**
-     * Sets the water level of the bottle visually and updates the internal state.
-     * @param newPercentage The desired fill percentage (0 to 100).
-     */
-    private fun setWaterLevelPercentage(newPercentage: Int) {
-        // Ensure the percentage is within the valid range (0-100)
-        val constrainedPercentage = newPercentage.coerceIn(0, 100)
-        currentWaterLevelPercentage = constrainedPercentage // Update our state variable
+    class DayViewContainer(view: View) : ViewContainer(view) {
+        val dayView: View =
+            view.findViewById(R.id.dayView) // The colored square from calendar_day_github_style.xml
+        lateinit var day: CalendarDay // Will be set when binding
 
-        // Only proceed if bottleLayerDrawable has been initialized
-        bottleLayerDrawable?.let { currentBottleDrawable ->
-            // Convert the percentage (0-100) to the Drawable's level scale (0-10000)
-            val drawableLevel = currentWaterLevelPercentage * 100
-
-            // Ensure the LayerDrawable has the expected number of layers (at least two)
-            if (currentBottleDrawable.numberOfLayers > 1) {
-                // Get the second layer (index 1), which should be your ClipDrawable
-                val clipDrawable = currentBottleDrawable.getDrawable(1)
-
-                // Set the level on the ClipDrawable. This makes it "reveal" the underlying image.
-                clipDrawable.level = drawableLevel
-                // Log.d("MainMenuFragment", "Set water to: $currentWaterLevelPercentage%, Drawable level: $drawableLevel") // Optional detailed log
-            } else {
-                Log.e("MainMenuFragment", "LayerDrawable does not have enough layers (expected 2) for water level. Layers found: ${currentBottleDrawable.numberOfLayers}")
+        init {
+            // You can set an OnClickListener for each day if needed
+            view.setOnClickListener {
+//                if (day.position == DayPosition.MonthDate) { // Only for dates in the current month
+//                    val level = contributionData[day.date] ?: 0
+                // Log.d("CalendarClick", "Clicked ${day.date}, Level: $level")
+                // You could show a Toast or more details here
             }
-        } ?: run {
-            // This block runs if bottleLayerDrawable is null
-            if (!::imageViewWaterBottle.isInitialized || imageViewWaterBottle.drawable !is LayerDrawable) {
-                Log.e("MainMenuFragment", "setWaterLevelPercentage called but bottleLayerDrawable is null. ImageView or its drawable not set up correctly.")
-            } // Closes the 'if' statement
-        } // Closes the 'run' block
-    } // Closes the 'setWaterLevelPercentage' function
-
+        }
+    }
 }
+
