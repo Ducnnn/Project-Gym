@@ -42,7 +42,7 @@ class MainMenuFragment : Fragment() {
         val dateFormat = SimpleDateFormat("MMM, dd", locale).format(calendar)
         tvDateAndTrainingDay.text = dateFormat
         val bottle = view.findViewById<ImageView>(R.id.imageView_water_bottle)
-        val level = 7000;
+        val level = 7000
         bottle.background.setLevel(level)
 
         val btnProgram = view.findViewById<Button>(R.id.program_button)
