@@ -12,109 +12,124 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
-            android:id="@+id/meals_graph"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_margin="24dp"
-            android:orientation="horizontal"
-            android:weightSum="1.3"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ProgressBar
-                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                android:progress="10"
-                android:id="@+id/progress_calories"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="4dp"
-                android:layout_weight="0.3"
-                android:rotation = "270"
-                android:progressTint="#FF0000"/>
-
-            <ProgressBar
-                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                android:progress="20"
-                android:id="@+id/progress_proteins"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="4dp"
-                android:layout_weight="0.25"
-                android:rotation="270"
-                android:progressTint="#0E32B3" />
-
-            <ProgressBar
-                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                android:progress="30"
-                android:id="@+id/progress_carbohydrates"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="4dp"
-                android:layout_weight="0.25"
-                android:rotation="270"
-                android:progressTint="#00FF00"/>
-
-            <ProgressBar
-                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                android:progress="70"
-                android:id="@+id/progress_fats"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="4dp"
-                android:layout_weight="0.25"
-                android:rotation="270"
-                android:progressTint="#F600FF" />
-
-            <ProgressBar
-                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                android:progress="40"
-                android:id="@+id/progress_water"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="4dp"
-                android:layout_weight="0.25"
-                android:rotation="270"
-                android:progressTint="#FFEF00"/>
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:id="@+id/linearLayout2"
-            android:layout_width="match_parent"
-            android:layout_height="400dp"
-            android:layout_margin="24dp"
-            android:orientation="vertical"
-            android:weightSum="1.0"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <TextView
-                android:id="@+id/meals"
+            <LinearLayout
+                android:id="@+id/meals_graph"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.2"
-                android:text="Meals"
-                android:gravity="center"
-                android:textSize="24sp" />
+                android:layout_height="200dp"
+                android:layout_margin="24dp"
+                android:orientation="horizontal"
+                android:weightSum="1.3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_meals"
+                <ProgressBar
+                    android:id="@+id/progress_calories"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="4dp"
+                    android:layout_weight="0.3"
+                    android:progress="10"
+                    android:progressTint="#FF0000"
+                    android:rotation="270" />
+
+                <ProgressBar
+                    android:id="@+id/progress_proteins"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="4dp"
+                    android:layout_weight="0.25"
+                    android:progress="20"
+                    android:progressTint="#0E32B3"
+                    android:rotation="270" />
+
+                <ProgressBar
+                    android:id="@+id/progress_carbohydrates"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="4dp"
+                    android:layout_weight="0.25"
+                    android:progress="30"
+                    android:progressTint="#00FF00"
+                    android:rotation="270" />
+
+                <ProgressBar
+                    android:id="@+id/progress_fats"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="4dp"
+                    android:layout_weight="0.25"
+                    android:progress="70"
+                    android:progressTint="#F600FF"
+                    android:rotation="270" />
+
+                <ProgressBar
+                    android:id="@+id/progress_water"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="4dp"
+                    android:layout_weight="0.25"
+                    android:progress="40"
+                    android:progressTint="#FFEF00"
+                    android:rotation="270" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/linearLayout2"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.6" />
+                android:layout_height="400dp"
+                android:layout_margin="24dp"
+                android:orientation="vertical"
+                android:weightSum="1.0"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
 
+                <TextView
+                    android:id="@+id/meals"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.2"
+                    android:gravity="center"
+                    android:text="Meals"
+                    android:textSize="24sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_meals"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.6" />
+
+
+                <Button
+                    android:id="@+id/btn_add"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.2"
+                    android:text="Plus" />
+            </LinearLayout>
 
             <Button
-                android:id="@+id/btn_add"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.2"
-                android:text="Plus" />
-        </LinearLayout>
+                android:id="@+id/button_param"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Get suggested nutrition"
+                app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/meals_graph" />
 
-
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline26"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_begin="307dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
