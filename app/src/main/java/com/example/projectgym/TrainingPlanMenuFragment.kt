@@ -1,6 +1,6 @@
 package com.example.projectgym
 
-import android.content.Context
+
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.addCallback
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.children
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -49,8 +50,12 @@ class TrainingPlanMenuFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_training_plan_menu, container, false)
     }
 
-    override fun onResume() {
-        super.onResume()
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val callback = requireActivity().onBackPressedDispatcher.addCallback(this) {
+            findNavController().navigate(R.id.action_trainingPlanMenuFragment_to_mainMenuFragment)
+        }
+        callback.isEnabled
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -133,6 +138,9 @@ class TrainingPlanMenuFragment : Fragment() {
                                 weekDay.position
                             )
                         )
+                        for (exercise in day.exercises){
+                            exercise.clearSets()
+                        }
                         calendarViewBinder.setWorkoutToDay(weekDay, day)
                         calendarView.notifyDayChanged(weekDay)
                     }

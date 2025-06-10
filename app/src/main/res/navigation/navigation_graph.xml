@@ -32,7 +32,11 @@
         android:id="@+id/currentDayFragment"
         android:name="com.example.projectgym.CurrentDayFragment"
         android:label="fragment_current_day"
-        tools:layout="@layout/fragment_current_day" />
+        tools:layout="@layout/fragment_current_day" >
+        <action
+            android:id="@+id/action_currentDayFragment_to_mainMenuFragment"
+            app:destination="@id/mainMenuFragment" />
+    </fragment>
     <fragment
         android:id="@+id/trainingPlanMenuFragment"
         android:name="com.example.projectgym.TrainingPlanMenuFragment"
@@ -41,6 +45,9 @@
         <action
             android:id="@+id/action_trainingPlanMenuFragment_to_dayConstructorFragment"
             app:destination="@id/dayConstructorFragment" />
+        <action
+            android:id="@+id/action_trainingPlanMenuFragment_to_mainMenuFragment"
+            app:destination="@id/mainMenuFragment" />
     </fragment>
     <fragment
         android:id="@+id/mealsMenuFragment"

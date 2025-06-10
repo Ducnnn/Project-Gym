@@ -31,7 +31,9 @@ class CurrentDayAdapter(private val listOfExercises: List<Exercise>) :
     override fun onBindViewHolder(holder: CurrentDayViewHolder, position: Int) {
         val exercise = listOfExercises[position]
         holder.tvExercise.text = exercise.name
-
+        holder.tgButtonFinished.isClickable = true
+        holder.edTextReps.isFocusableInTouchMode = true
+        holder.edTextWeight.isFocusableInTouchMode = true
         holder.tgButtonFinished.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 exercise.isCompleted = true

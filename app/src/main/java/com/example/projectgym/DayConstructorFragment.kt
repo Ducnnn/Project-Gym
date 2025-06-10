@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.Spinner
 import android.widget.TextView
+import androidx.activity.addCallback
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -23,8 +24,12 @@ class DayConstructorFragment : Fragment() {
     private var pickedColor = "#FFFFFF"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        val callback = requireActivity().onBackPressedDispatcher.addCallback(this) {
+            findNavController().navigate(R.id.action_dayConstructorFragment_to_trainingPlanMenuFragment)
+        }
+        callback.isEnabled
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

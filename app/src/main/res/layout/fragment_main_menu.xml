@@ -33,7 +33,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/first_inner_layout"
             android:layout_width="match_parent"
-            android:layout_height="124dp"
+            android:layout_height="112dp"
             android:layout_margin="5dp"
             android:background="@drawable/layout_bg"
             app:layout_constraintBottom_toTopOf="@+id/chart_layout"
@@ -69,7 +69,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/chart_layout"
             android:layout_width="match_parent"
-            android:layout_height="155dp"
+            android:layout_height="145dp"
             android:layout_margin="5dp"
             android:background="@drawable/layout_bgg"
             app:layout_constraintBottom_toTopOf="@+id/calendar_container"
@@ -111,22 +111,36 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/chart_layout">
 
+            <include
+                android:id="@+id/day_names_container"
+                layout="@layout/calendar_day_titles_container"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <com.kizitonwose.calendar.view.CalendarView
                 android:id="@+id/calendarview_attendance"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginStart="8dp"
+                android:layout_width="340dp"
+                android:layout_height="223dp"
+                android:layout_marginStart="4dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="4dp"
                 android:layout_marginBottom="8dp"
+                app:cv_daySize="rectangle"
                 app:cv_dayViewResource="@layout/attendance_calendar_day_layout"
                 app:cv_orientation="horizontal"
                 app:cv_outDateStyle="endOfGrid"
                 app:cv_scrollPaged="true"
+                app:cv_weekHeaderResource="@layout/month_name_container"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/day_names_container" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
