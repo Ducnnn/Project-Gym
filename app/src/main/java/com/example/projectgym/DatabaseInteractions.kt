@@ -15,6 +15,7 @@ class DatabaseInteractions {
     private val db = Firebase.firestore
     private val userId: String = FirebaseAuth.getInstance().currentUser?.uid.toString()
     private val pathToUser = "users/$userId/"
+
     fun addUser(
         email: String,
         displayName: String,
@@ -39,7 +40,7 @@ class DatabaseInteractions {
         val docRef = db.document("${pathToUser}TrainingDays/${date.date}")
         try {
             docRef.set(day).addOnSuccessListener { Log.i("addDayToWeek", "Success: ${date.date}") }
-        } catch (e : Exception){
+        } catch (e: Exception) {
             Log.e("Database addDayToWeek", "Failed to add day, exception: ${e.message}")
         }
     }
@@ -51,8 +52,8 @@ class DatabaseInteractions {
                 docPath.get().await()
             }
             if (documentSnapshot.exists()) {
-               val trainingDay = documentSnapshot.toObject(TranDay::class.java)
-                if (trainingDay != null){
+                val trainingDay = documentSnapshot.toObject(TranDay::class.java)
+                if (trainingDay != null) {
                     return trainingDay
                 }
             }
@@ -91,18 +92,18 @@ class DatabaseInteractions {
                     Log.e("FIRESTORE_COROUTINE", "Error converting document ${document.id}", e)
                 }
             }
-        } catch (e : Exception) {
+        } catch (e: Exception) {
             Log.e("Database", "Failed to get program list")
         }
         return result
     }
 
-    fun deleteTrainingDay(date: WeekDay){
+    fun deleteTrainingDay(date: WeekDay) {
         val docPath = db.document("${pathToUser}TrainingDays/${date.date}")
         docPath.delete()
     }
 
-    fun updateNumberOfSets(date: WeekDay, exercises : MutableList<Exercise>){
+    fun updateNumberOfSets(date: WeekDay, exercises: MutableList<Exercise>) {
         val docPath = db.document("${pathToUser}TrainingDays/${date.date}")
         docPath.update("exercises", exercises)
     }

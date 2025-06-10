@@ -52,7 +52,15 @@ class Exercise(
     var description: String = "",
     var sets: MutableList<Set> = mutableListOf(Set(0, 0)),
     var isCompleted : Boolean = false
-)
+){
+    fun clearSets(){
+        for(set in sets){
+            set.reps = 0
+            set.weight = 0
+            isCompleted = false
+        }
+    }
+}
 
 class Set(var reps: Int = 0, var weight: Int = 0)
 

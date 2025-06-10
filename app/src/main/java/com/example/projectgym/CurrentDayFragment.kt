@@ -7,9 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.activity.addCallback
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.projectgym.R.id.action_currentDayFragment_to_mainMenuFragment
 import com.kizitonwose.calendar.core.WeekDay
 import com.kizitonwose.calendar.core.WeekDayPosition
 import kotlinx.coroutines.launch
@@ -21,6 +24,11 @@ class CurrentDayFragment : Fragment() {
     private lateinit var dayOfWeek: WeekDay
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val callback = requireActivity().onBackPressedDispatcher.addCallback(this) {
+            findNavController().navigate(action_currentDayFragment_to_mainMenuFragment)
+            onDetach()
+        }
+        callback.isEnabled
     }
 
     override fun onCreateView(
