@@ -1,6 +1,7 @@
 package com.example.projectgym
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,9 +14,11 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.children
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.projectgym.DayConstructorAdapter.OnClickListener
 import com.kizitonwose.calendar.core.CalendarDay
 import com.kizitonwose.calendar.core.WeekDay
 import com.kizitonwose.calendar.core.WeekDayPosition
@@ -41,6 +44,7 @@ class MainMenuFragment : Fragment() {
         val callback = requireActivity().onBackPressedDispatcher.addCallback(this) {}
         callback.isEnabled
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -95,14 +99,22 @@ class MainMenuFragment : Fragment() {
 
         attendanceCalendarView.setup(startMonth, endMonth, daysOfWeek.first())
         attendanceCalendarView.scrollToMonth(YearMonth.now())
-        attendanceCalendarView.dayBinder = AttendanceDayBinder(lifecycleScope, view)
+        val attendanceDayBinder=  AttendanceDayBinder(lifecycleScope, view)
+        attendanceDayBinder.setOnClickListener(object : AttendanceDayBinder.OnClickListener{
+            override fun onClick() {
+                Log.i("current day1", "clicked")
+                findNavController().navigate(R.id.action_mainMenuFragment_to_currentDayFragment)
+                Log.i("current day2", "clicked")
+            }
+        })
+        attendanceCalendarView.dayBinder = attendanceDayBinder
     }
 
 
     class AttendanceDayBinder(private val scope: CoroutineScope, private val viewFragment: View) :
         MonthDayBinder<AttendanceDayBinder.AttendanceDayViewContainer> {
         override fun create(view: View) = AttendanceDayViewContainer(view)
-
+        private var onClickListener: OnClickListener? = null
         override fun bind(container: AttendanceDayViewContainer, data: CalendarDay) {
             container.M_job = scope.launch {
                 val trainingDay =
@@ -112,7 +124,7 @@ class MainMenuFragment : Fragment() {
                             WeekDayPosition.InDate
                         )
                     )
-                val percentage : Int
+                val percentage: Int
                 var finishedExercises = 0
                 for (exercise in trainingDay.exercises) {
                     if (exercise.isCompleted) {
@@ -120,7 +132,6 @@ class MainMenuFragment : Fragment() {
                     }
                 }
                 percentage = when {
-
                     trainingDay.exercises.isEmpty() -> -1
                     data.date.isAfter(LocalDate.now()) -> 101
                     else -> (finishedExercises.toDouble() / trainingDay.exercises.size * 100).toInt()
@@ -139,9 +150,20 @@ class MainMenuFragment : Fragment() {
                 container.dayView.setBackgroundResource(bgDrawableRes)
 
                 container.dayView.setOnClickListener {
-                    showDayInfoDialog(viewFragment, trainingDay)
+                    if (LocalDate.now().equals(data.date)) {
+
+                        onClickListener?.onClick()
+                        Log.i("current day", "clicked")
+                    } else {
+                        showDayInfoDialog(viewFragment, trainingDay)
+                    }
+
                 }
             }
+        }
+
+        fun setOnClickListener(listener: OnClickListener?) {
+            this.onClickListener = listener
         }
 
         private fun showDayInfoDialog(view: View, day: TranDay) {
@@ -160,17 +182,16 @@ class MainMenuFragment : Fragment() {
 
         }
 
-        open class AttendanceDayViewContainer(view: View) : ViewContainer(view) {
+        inner class AttendanceDayViewContainer(view: View) : ViewContainer(view) {
             val dayView: View = view.findViewById(R.id.dayView)
             var M_job: Job? = null
-
-            init {
-                view.setOnLongClickListener {
-
-                    true
-                }
-            }
         }
+
+        interface OnClickListener {
+            fun onClick()
+        }
+
     }
+
 }
 

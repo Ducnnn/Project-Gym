@@ -28,6 +28,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="16dp"
             android:text="ADD THIS DAY TO THE PROGRAM"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/btn_color_picker" />
