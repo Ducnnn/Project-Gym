@@ -52,13 +52,10 @@ class MealsMenuFragment : Fragment(), MealsMenuAdapter.RecyclerViewEvent {
 
         fillProgressBars(list, view)
 
-
         val btn = view.findViewById<Button>(R.id.button_param)
         btn.setOnClickListener{
             findNavController().navigate(R.id.action_mealsMenuFragment_to_parametersFragment)
         }
-
-
 
     }
 
