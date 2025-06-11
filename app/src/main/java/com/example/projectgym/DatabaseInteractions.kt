@@ -9,12 +9,14 @@ import com.kizitonwose.calendar.core.WeekDay
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
+import java.time.LocalDate
 
 
 class DatabaseInteractions {
     private val db = Firebase.firestore
     private val userId: String = FirebaseAuth.getInstance().currentUser?.uid.toString()
     private val pathToUser = "users/$userId/"
+
     fun addUser(
         email: String,
         displayName: String,
@@ -23,7 +25,14 @@ class DatabaseInteractions {
         val userData = hashMapOf(
             "email" to email,
             "displayName" to displayName,
-            "createdAt" to createdAt
+            "createdAt" to createdAt,
+            "gender" to "male",
+            "height" to 180,
+            "weight" to 80,
+            "goal" to "maintenance",
+            "age" to 18,
+            "activity" to "average",
+            "macroGoals" to MacroResult(protein = 150.0, fats = 100.0, carbs = 200.0, calories = 1500.0)
         )
         db.collection("users").document(userId)
             .set(userData)
@@ -35,11 +44,50 @@ class DatabaseInteractions {
             }
     }
 
+    fun updateParameters(
+        activity:String,
+        gender: String,
+        height: Int,
+        weight: Int,
+        goal: String,
+        age: Int
+    ) {
+        val updatedUserData = hashMapOf<String, Any>(
+            "activity" to activity,
+            "gender" to gender,
+            "height" to height,
+            "weight" to weight,
+            "goal" to goal,
+            "age" to age
+        )
+        db.collection("users").document(userId).update(updatedUserData)
+    }
+
+    fun setRecommendedMacros (
+        macroGoals: MacroResult
+    ) {
+
+        db.collection("users").document(userId).update(mapOf("macroGoals" to macroGoals))
+    }
+
+    fun addMealToDay (
+        date: LocalDate,
+        meal: Meals
+    ) {
+        val docRef = db.document("${pathToUser}MealDays/${date}")
+        try {
+            docRef.set(meal).addOnSuccessListener { Log. i("addMealToDay", "Success: ${date}") }
+        } catch (e: Exception) {
+            Log.e ("Database addMealToDay", "Failed to add meal, exception: ${date}")
+        }
+    }
+
+
     fun addDayToWeek(day: TranDay, date: WeekDay) {
         val docRef = db.document("${pathToUser}TrainingDays/${date.date}")
         try {
             docRef.set(day).addOnSuccessListener { Log.i("addDayToWeek", "Success: ${date.date}") }
-        } catch (e : Exception){
+        } catch (e: Exception) {
             Log.e("Database addDayToWeek", "Failed to add day, exception: ${e.message}")
         }
     }
@@ -51,8 +99,8 @@ class DatabaseInteractions {
                 docPath.get().await()
             }
             if (documentSnapshot.exists()) {
-               val trainingDay = documentSnapshot.toObject(TranDay::class.java)
-                if (trainingDay != null){
+                val trainingDay = documentSnapshot.toObject(TranDay::class.java)
+                if (trainingDay != null) {
                     return trainingDay
                 }
             }
@@ -91,18 +139,18 @@ class DatabaseInteractions {
                     Log.e("FIRESTORE_COROUTINE", "Error converting document ${document.id}", e)
                 }
             }
-        } catch (e : Exception) {
+        } catch (e: Exception) {
             Log.e("Database", "Failed to get program list")
         }
         return result
     }
 
-    fun deleteTrainingDay(date: WeekDay){
+    fun deleteTrainingDay(date: WeekDay) {
         val docPath = db.document("${pathToUser}TrainingDays/${date.date}")
         docPath.delete()
     }
 
-    fun updateNumberOfSets(date: WeekDay, exercises : MutableList<Exercise>){
+    fun updateNumberOfSets(date: WeekDay, exercises: MutableList<Exercise>) {
         val docPath = db.document("${pathToUser}TrainingDays/${date.date}")
         docPath.update("exercises", exercises)
     }

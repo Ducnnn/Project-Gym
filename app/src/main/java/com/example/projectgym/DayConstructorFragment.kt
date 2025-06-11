@@ -9,6 +9,8 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.Spinner
 import android.widget.TextView
+import android.widget.Toast
+import androidx.activity.addCallback
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -23,8 +25,12 @@ class DayConstructorFragment : Fragment() {
     private var pickedColor = "#FFFFFF"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        val callback = requireActivity().onBackPressedDispatcher.addCallback(this) {
+            findNavController().navigate(R.id.action_dayConstructorFragment_to_trainingPlanMenuFragment)
+        }
+        callback.isEnabled
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -57,9 +63,12 @@ class DayConstructorFragment : Fragment() {
         val btnAddDay = view.findViewById<Button>(R.id.btn_add_constructed_day)
         btnAddDay.setOnClickListener {
             val edTextDayTitle = view.findViewById<TextView>(R.id.editTextDayTitle)
-            val dayName = edTextDayTitle.text.toString()
-            addDayToTrainingProgram(dayName, pickedColor)
-            findNavController().navigate(R.id.action_dayConstructorFragment_to_trainingPlanMenuFragment)
+            if (!edTextDayTitle.text.isNullOrEmpty()){
+                val dayName = edTextDayTitle.text.toString()
+                addDayToTrainingProgram(dayName, pickedColor)
+                findNavController().navigate(R.id.action_dayConstructorFragment_to_trainingPlanMenuFragment)
+            } else Toast.makeText(view.context,"Enter your day Title!", Toast.LENGTH_LONG).show()
+
         }
     }
 

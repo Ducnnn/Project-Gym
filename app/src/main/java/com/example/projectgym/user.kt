@@ -1,6 +1,6 @@
 package com.example.projectgym
 
-import kotlinx.datetime.DayOfWeek
+
 
 class User(
 
@@ -9,6 +9,7 @@ class User(
     var height: Float,
     var weight: Float,
     var gender: String,
+    var goal: String,
     var program: MutableList<TranDay>
 )
 
@@ -52,16 +53,20 @@ class Exercise(
     var description: String = "",
     var sets: MutableList<Set> = mutableListOf(Set(0, 0)),
     var isCompleted : Boolean = false
-)
+){
+    fun clearSets(){
+        for(set in sets){
+            set.reps = 0
+            set.weight = 0
+            isCompleted = false
+        }
+    }
+}
 
 class Set(var reps: Int = 0, var weight: Int = 0)
 
-class CurDay(
-    // var trainingDay
-    // val date
-)
 
-class ListMeals(
+data class ListMeals(
     var meals: MutableList<Meals> = mutableListOf()
 ) {
     fun addMeal(meal: Meals) {
@@ -69,21 +74,24 @@ class ListMeals(
     }
 }
 
-class Meals(
+data class Meals(
     var name: String,
     var products: MutableList<Products> = mutableListOf()
-) {
-    fun addProducts(product: Products) {
-        products.add(product)
-    }
-}
+)
 
-class Products(
+data class Products(
     var name: String,
-    var calories: Double,
-    var proteins: Double,
+    var calories: Int,
+    var proteins: Int,
+    var fats: Int,
+    var carbs: Int
+)
+
+data class MacroResult(
+    var protein: Double,
     var fats: Double,
-    var carbs: Double
+    var carbs: Double,
+    var calories: Double
 )
 
 

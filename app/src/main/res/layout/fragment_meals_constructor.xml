@@ -13,12 +13,12 @@
         android:background="#78B0F0">
 
 
-        <TextView
+        <EditText
             android:id="@+id/mealconstructortext"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:gravity="center"
-            android:text="Meal Constructor"
+            android:text=""
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -53,9 +53,11 @@
                 android:textSize="24sp"
                 android:textColor="@color/white"
                 android:fontFamily="sans-serif-black"
-                android:padding="8dp"/>
-
+                android:padding="8dp"
+                android:text="Add meal" />
+          
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewProduct"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="0.75"

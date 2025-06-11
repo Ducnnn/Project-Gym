@@ -33,7 +33,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/first_inner_layout"
             android:layout_width="match_parent"
-            android:layout_height="124dp"
+            android:layout_height="112dp"
             android:layout_margin="5dp"
             android:background="@drawable/layout_bg"
             app:layout_constraintBottom_toTopOf="@+id/chart_layout"
@@ -43,23 +43,33 @@
 
             <Button
                 android:id="@+id/program_button"
-                android:layout_width="171dp"
-                android:layout_height="88dp"
-                android:layout_marginStart="24sp"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="20dp"
                 android:backgroundTint="#AB3BBC"
-                android:text="Program Button"
+                android:fontFamily="sans-serif-black"
+                android:text="CONSTRUCT PLAN"
                 android:textColor="#FFFFFF"
+                android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/list_of_exercises"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/list_of_exercises"
-                android:layout_width="132dp"
-                android:layout_height="101dp"
-                android:layout_marginEnd="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="20dp"
                 android:backgroundTint="#AB3BBC"
-                android:text="List of Exercises"
+                android:fontFamily="sans-serif-black"
+                android:text="CURRENT DAY"
+                android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -69,7 +79,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/chart_layout"
             android:layout_width="match_parent"
-            android:layout_height="155dp"
+            android:layout_height="145dp"
             android:layout_margin="5dp"
             android:background="@drawable/layout_bgg"
             app:layout_constraintBottom_toTopOf="@+id/calendar_container"
@@ -126,22 +136,36 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/chart_layout">
 
+            <include
+                android:id="@+id/day_names_container"
+                layout="@layout/calendar_day_titles_container"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <com.kizitonwose.calendar.view.CalendarView
                 android:id="@+id/calendarview_attendance"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginStart="8dp"
+                android:layout_width="340dp"
+                android:layout_height="223dp"
+                android:layout_marginStart="4dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="4dp"
                 android:layout_marginBottom="8dp"
+                app:cv_daySize="rectangle"
                 app:cv_dayViewResource="@layout/attendance_calendar_day_layout"
                 app:cv_orientation="horizontal"
                 app:cv_outDateStyle="endOfGrid"
                 app:cv_scrollPaged="true"
+                app:cv_weekHeaderResource="@layout/month_name_container"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/day_names_container" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -32,7 +32,11 @@
         android:id="@+id/currentDayFragment"
         android:name="com.example.projectgym.CurrentDayFragment"
         android:label="fragment_current_day"
-        tools:layout="@layout/fragment_current_day" />
+        tools:layout="@layout/fragment_current_day" >
+        <action
+            android:id="@+id/action_currentDayFragment_to_mainMenuFragment"
+            app:destination="@id/mainMenuFragment" />
+    </fragment>
     <fragment
         android:id="@+id/trainingPlanMenuFragment"
         android:name="com.example.projectgym.TrainingPlanMenuFragment"
@@ -41,6 +45,9 @@
         <action
             android:id="@+id/action_trainingPlanMenuFragment_to_dayConstructorFragment"
             app:destination="@id/dayConstructorFragment" />
+        <action
+            android:id="@+id/action_trainingPlanMenuFragment_to_mainMenuFragment"
+            app:destination="@id/mainMenuFragment" />
     </fragment>
     <fragment
         android:id="@+id/mealsMenuFragment"
@@ -50,12 +57,19 @@
         <action
             android:id="@+id/action_mealsMenuFragment_to_mealsConstructorFragment"
             app:destination="@id/mealsConstructorFragment" />
+        <action
+            android:id="@+id/action_mealsMenuFragment_to_parametersFragment"
+            app:destination="@id/parametersFragment" />
     </fragment>
     <fragment
         android:id="@+id/mealsConstructorFragment"
         android:name="com.example.projectgym.MealsConstructorFragment"
         android:label="fragment_meals_constructor"
-        tools:layout="@layout/fragment_meals_constructor" />
+        tools:layout="@layout/fragment_meals_constructor" >
+        <action
+            android:id="@+id/action_mealsConstructorFragment_to_mealsMenuFragment"
+            app:destination="@id/mealsMenuFragment" />
+    </fragment>
     <fragment
         android:id="@+id/dayConstructorFragment"
         android:name="com.example.projectgym.DayConstructorFragment"
@@ -64,5 +78,13 @@
         <action
             android:id="@+id/action_dayConstructorFragment_to_trainingPlanMenuFragment"
             app:destination="@id/trainingPlanMenuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/parametersFragment"
+        android:name="com.example.projectgym.ParametersFragment"
+        android:label="ParametersFragment" >
+        <action
+            android:id="@+id/action_parametersFragment_to_mealsMenuFragment"
+            app:destination="@id/mealsMenuFragment" />
     </fragment>
 </navigation>
