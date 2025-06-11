@@ -16,6 +16,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
+import com.github.mikephil.charting.charts.PieChart
+import com.github.mikephil.charting.data.PieData
+import com.github.mikephil.charting.data.PieDataSet
+import com.github.mikephil.charting.data.PieEntry
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projectgym.DayConstructorAdapter.OnClickListener
@@ -52,8 +56,37 @@ class MainMenuFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_main_menu, container, false)
     }
 
+    //setup pie chart
+    private fun setupPieChart(pieChart: PieChart){
+        val pieEntries = arrayListOf<PieEntry>()
+        pieEntries.add(PieEntry(30.0f))
+        pieEntries.add(PieEntry(40.0f))
+        pieEntries.add(PieEntry(35.0f))
+        //Setup animation
+        pieChart.animateXY(1000,1000)
+        //Setup colors
+        val pieDataSet = PieDataSet(pieEntries,"Protein,Fats,Carbohydrates")
+        pieDataSet.setColors(
+            resources.getColor(R.color.Protein),
+            resources.getColor(R.color.Fats),
+            resources.getColor(R.color.Carbohydrates)
+        )
+        //Setup Pie Chart Data
+        val pieData = PieData(pieDataSet)
+        pieData.setDrawValues(false)
+        pieChart.data = pieData
+
+        pieChart.legend.isEnabled = (false)
+        pieChart.description.isEnabled = (false)
+
+
+
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val pieChart = view.findViewById<PieChart>(R.id.pieChart)
+        setupPieChart(pieChart)
+
         val tvDateAndTrainingDay = view.findViewById<TextView>(R.id.date_and_training_day)
 
         val calendar = Calendar.getInstance().time

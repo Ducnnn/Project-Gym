@@ -8,7 +8,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#78B0F0">
 
         <ImageButton
             android:id="@+id/btn_color_picker"
@@ -27,6 +28,12 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="16dp"
+            android:textSize="18sp"
+            android:fontFamily="sans-serif-black"
+            android:text="Add this day to the program"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:backgroundTint="#AB3BBC"
             android:text="ADD THIS DAY TO THE PROGRAM"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -42,18 +49,23 @@
             android:hint="Enter title of your day"
             android:imeOptions="actionDone"
             android:inputType="text"
+            android:text="Day Title"
+            android:fontFamily="sans-serif-black"
             android:maxLines="1"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@drawable/layout_bg"/>
 
         <Button
             android:id="@+id/btn_add_exercise"
             android:layout_width="190dp"
             android:layout_height="90dp"
-
+            android:backgroundTint="#2B47CE"
             android:layout_marginTop="16dp"
+            android:text="Add exercise"
+            android:fontFamily="sans-serif-black"
             android:text="ADD NEW EXERCISE"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -68,7 +80,8 @@
             android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toTopOf="@+id/btn_add_constructed_day"
             app:layout_constraintTop_toBottomOf="@+id/btn_add_exercise"
-            tools:layout_editor_absoluteX="122dp" />
+            tools:layout_editor_absoluteX="122dp"
+            android:background="@drawable/layout_bg"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

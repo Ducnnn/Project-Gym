@@ -9,7 +9,8 @@
     <!-- TODO: Update blank fragment layout -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#78B0F0">
 
 
         <EditText
@@ -21,7 +22,11 @@
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:textColor="@color/black"
+            android:fontFamily="sans-serif-black"
+            android:padding="8dp"
+            android:background="@drawable/layout_bg"/>
 
 
 
@@ -43,14 +48,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="22dp"
                 android:layout_weight="0.1"
+                android:backgroundTint="#2B47CE"
+                android:text="Plus"
                 android:textSize="24sp"
+                android:textColor="@color/white"
+                android:fontFamily="sans-serif-black"
+                android:padding="8dp"
                 android:text="Add meal" />
-
+          
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerViewProduct"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="0.75" />
+                android:layout_weight="0.75"
+                android:background="@drawable/layout_bgg"/>
 
 
             <Button
@@ -58,8 +69,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.1"
+                android:backgroundTint="#2B47CE"
+                android:text="Food Constructor"
                 android:textSize="24sp"
-                android:text="Food Constructor" />
+                android:textColor="@color/white"
+                android:fontFamily="sans-serif-black"
+                android:padding="8dp"/>
 
 
         </LinearLayout>

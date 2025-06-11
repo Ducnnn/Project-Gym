@@ -10,7 +10,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#78B0F0">
 
         <ImageButton
             android:id="@+id/btn_timer"
@@ -34,6 +35,8 @@
             android:layout_marginTop="30dp"
             android:layout_marginEnd="40dp"
             android:gravity="center"
+            android:fontFamily="sans-serif-black"
+            android:background="@drawable/layout_bg"
             android:text="Current Day:"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -46,6 +49,8 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Chest"
+            android:fontFamily="sans-serif-black"
+            android:textColor="@color/white"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -59,7 +64,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_current_day_name" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_current_day_name"
+            android:background="@drawable/layout_bgg"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
