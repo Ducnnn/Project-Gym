@@ -120,10 +120,10 @@ class MealsMenuFragment : Fragment(), MealsMenuAdapter.RecyclerViewEvent {
         carbsProgress.max = carbsGoal
         caloriesProgress.max = caloriesGoal
 
-        proteinProgress.progress = totalProtein.toInt().coerceAtMost(proteinGoal)
-        fatsProgress.progress = totalFats.toInt().coerceAtMost(fatsGoal)
-        carbsProgress.progress = totalCarbs.toInt().coerceAtMost(carbsGoal)
-        caloriesProgress.progress = totalCalories.toInt().coerceAtMost(caloriesGoal)
+        proteinProgress.progress = totalProtein.coerceAtMost(proteinGoal)
+        fatsProgress.progress = totalFats.coerceAtMost(fatsGoal)
+        carbsProgress.progress = totalCarbs.coerceAtMost(carbsGoal)
+        caloriesProgress.progress = totalCalories.coerceAtMost(caloriesGoal)
     }
 
 }

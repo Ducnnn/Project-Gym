@@ -39,8 +39,9 @@ class MealsConstructorFragment : Fragment() {
         }
         btnAddMeal.setOnClickListener{
             val edMealName = view.findViewById<EditText>(R.id.mealconstructortext)
-            val MealName = edMealName
-            addMealToCurrentDay(MealName.text.toString(), currentDate)
+            val mealName = edMealName.text.toString()
+            val meal = Meals(mealName, listOfProducts)
+            addMealToCurrentDay(meal, currentDate)
             findNavController().navigate(R.id.action_mealsConstructorFragment_to_mealsMenuFragment)
         }
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerViewProduct)
@@ -82,8 +83,7 @@ class MealsConstructorFragment : Fragment() {
         listOfProducts.add(product)
         mealsConstructorAdapter.notifyItemInserted(mealsConstructorAdapter.itemCount)
     }
-    private fun addMealToCurrentDay(name:String, date: LocalDate) {
-        val meal = Meals(name, listOfProducts.toMutableList())
-        DatabaseInteractions().addMealToDay(date, meal)
+    private fun addMealToCurrentDay(meals :Meals, date: LocalDate) {
+        DatabaseInteractions().addMealToDay(date, meals)
     }
 }

@@ -76,7 +76,8 @@ class DatabaseInteractions {
     ) {
         val docRef = db.document("${pathToUser}MealDays/${date}")
         try {
-            docRef.set(meal).addOnSuccessListener { Log. i("addMealToDay", "Success: ${date}") }
+            docRef.update("meals", FieldValue.arrayUnion(meal))
+                .addOnSuccessListener { Log. i("addMealToDay", "Success: ${date}")}
         } catch (e: Exception) {
             Log.e ("Database addMealToDay", "Failed to add meal, exception: ${date}")
         }
