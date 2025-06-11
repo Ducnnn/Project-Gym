@@ -138,9 +138,8 @@ class MainMenuFragment : Fragment() {
 
                 container.dayView.setBackgroundResource(bgDrawableRes)
 
-                container.dayView.setOnLongClickListener {
+                container.dayView.setOnClickListener {
                     showDayInfoDialog(viewFragment, trainingDay)
-                    true
                 }
             }
         }
