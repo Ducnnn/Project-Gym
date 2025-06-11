@@ -12,7 +12,7 @@ class CalculatorForMacros {
         goal: String,
         age: Int
     ): MacroResult {
-        val bmr = if (gender == "male") {
+        val bmr = if (gender == "male") { //Mifflin-St Jeor Equation
             10 * weight + 6.25 * height - 5 * age + 5
         } else {
             10 * weight + 6.25 * height - 5 * age - 161
