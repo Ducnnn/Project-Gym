@@ -129,6 +129,7 @@
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:background="@null"
+
                     android:focusable="false"
                     android:gravity="center"
                     android:hint="0 lbs"

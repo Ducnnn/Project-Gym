@@ -1,6 +1,6 @@
 package com.example.projectgym
 
-import kotlinx.datetime.DayOfWeek
+
 
 class User(
 
@@ -65,10 +65,6 @@ class Exercise(
 
 class Set(var reps: Int = 0, var weight: Int = 0)
 
-class CurDay(
-    // var trainingDay
-    // val date
-)
 
 data class ListMeals(
     var meals: MutableList<Meals> = mutableListOf()
