@@ -32,17 +32,9 @@ class ProfileMenuFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_profile_menu, container, false)
     }
 
-    @SuppressLint("ResourceType")
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val genderSpinner = view.findViewById<Spinner>(R.id.spinnerGender)
-        val adapter = ArrayAdapter.createFromResource(
-            requireContext(),
-            R.array.SpinnerGender_items,
-            android.R.layout.simple_spinner_item
-        )
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        genderSpinner.adapter = adapter
 
         val btnLogout = view.findViewById<Button>(R.id.btn_logout)
         btnLogout.setOnClickListener {

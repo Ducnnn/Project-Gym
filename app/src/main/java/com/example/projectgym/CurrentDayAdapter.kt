@@ -37,7 +37,7 @@ class CurrentDayAdapter(private val listOfExercises: List<Exercise>) :
         holder.tgButtonFinished.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 exercise.isCompleted = true
-                holder.cardLayout.setCardBackgroundColor("#5b5b5b".toColorInt())
+                holder.cardLayout.setBackgroundResource(R.drawable.layout_bgggg)
                 holder.edTextWeight.isFocusable = false
                 holder.edTextReps.isFocusable = false
                 holder.btnDeleteSet.isClickable = false
@@ -45,7 +45,7 @@ class CurrentDayAdapter(private val listOfExercises: List<Exercise>) :
                 holder.spinnerSets.isEnabled = false
             } else {
                 exercise.isCompleted = false
-                holder.cardLayout.setCardBackgroundColor("#FFFFFF".toColorInt())
+                holder.cardLayout.setBackgroundResource(R.drawable.layout_bg)
                 holder.edTextWeight.isFocusable = true
                 holder.edTextReps.isFocusable = true
                 holder.edTextWeight.isFocusableInTouchMode = true
@@ -135,7 +135,8 @@ class CurrentDayAdapter(private val listOfExercises: List<Exercise>) :
             }
         }
         holder.tgButtonFinished.isChecked = exercise.isCompleted
-        holder.tgButtonFinished.callOnClick()
+        holder.tgButtonFinished.toggle()
+        holder.tgButtonFinished.toggle()
     }
 
     override fun getItemCount(): Int {

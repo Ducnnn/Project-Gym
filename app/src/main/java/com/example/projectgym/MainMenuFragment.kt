@@ -14,7 +14,6 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.children
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.data.PieData
@@ -22,7 +21,6 @@ import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.projectgym.DayConstructorAdapter.OnClickListener
 import com.kizitonwose.calendar.core.CalendarDay
 import com.kizitonwose.calendar.core.WeekDay
 import com.kizitonwose.calendar.core.WeekDayPosition
@@ -75,11 +73,10 @@ class MainMenuFragment : Fragment() {
         val pieData = PieData(pieDataSet)
         pieData.setDrawValues(false)
         pieChart.data = pieData
-
-        pieChart.legend.isEnabled = (false)
+        pieChart.isRotationEnabled = false
+        pieChart.setTouchEnabled(false)
+        pieChart.legend.isEnabled = (true)
         pieChart.description.isEnabled = (false)
-
-
 
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

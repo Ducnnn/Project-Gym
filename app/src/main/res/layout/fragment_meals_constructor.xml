@@ -49,7 +49,6 @@
                 android:layout_height="22dp"
                 android:layout_weight="0.1"
                 android:backgroundTint="#2B47CE"
-                android:text="Plus"
                 android:textSize="24sp"
                 android:textColor="@color/white"
                 android:fontFamily="sans-serif-black"
