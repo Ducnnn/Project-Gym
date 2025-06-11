@@ -88,10 +88,10 @@ class MealsMenuFragment : Fragment(), MealsMenuAdapter.RecyclerViewEvent {
         }
 
         title.text = "Macros for the ${meal.name}"
-        proteins.text = "Proteins: %.1f g".format(totalProt)
-        carbs.text = "Carbohydrates: %.1f g".format(totalCar)
-        fats.text = "Fats: %.1f g".format(totalFat)
-        calories.text = "Calories: %.1f kcal".format (totalCal)
+        proteins.text = "Proteins: ${totalProt}g"
+        carbs.text = "Carbohydrates: ${totalCar}g"
+        fats.text = "Fats: %.1f ${totalFat}g"
+        calories.text = "Calories: %.1f ${totalCal}kcal"
         builder.setView(dialogView)
 
 

@@ -135,8 +135,26 @@ class CurrentDayAdapter(private val listOfExercises: List<Exercise>) :
             }
         }
         holder.tgButtonFinished.isChecked = exercise.isCompleted
-        holder.tgButtonFinished.toggle()
-        holder.tgButtonFinished.toggle()
+        if (holder.tgButtonFinished.isChecked) {
+            exercise.isCompleted = true
+            holder.cardLayout.setBackgroundResource(R.drawable.layout_bgggg)
+            holder.edTextWeight.isFocusable = false
+            holder.edTextReps.isFocusable = false
+            holder.btnDeleteSet.isClickable = false
+            holder.btnAddSet.isClickable = false
+            holder.spinnerSets.isEnabled = false
+        } else {
+            exercise.isCompleted = false
+            holder.cardLayout.setBackgroundResource(R.drawable.layout_bg)
+            holder.edTextWeight.isFocusable = true
+            holder.edTextReps.isFocusable = true
+            holder.edTextWeight.isFocusableInTouchMode = true
+            holder.edTextReps.isFocusableInTouchMode = true
+            holder.edTextReps.isFocusable = true
+            holder.btnDeleteSet.isClickable = true
+            holder.btnAddSet.isClickable = true
+            holder.spinnerSets.isEnabled = true
+        }
     }
 
     override fun getItemCount(): Int {
