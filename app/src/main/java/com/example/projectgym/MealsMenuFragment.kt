@@ -16,10 +16,10 @@ import androidx.recyclerview.widget.RecyclerView
 
 
 class MealsMenuFragment : Fragment(), MealsMenuAdapter.RecyclerViewEvent {
-    private val chicken = Products ("Chicken", 237.0, 23.28, 8.1, 0.0)
-    private val bread = Products("Bread", 200.0, 4.0, 17.0, 20.0)
-    private val kolbasa = Products("Kolbasa", 300.0, 34.0, 8.0, 9.0)
-    private val cucumber = Products("Cucumber", 5.0, 20.0, 30.0, 6.0)
+    private val chicken = Products ("Chicken", 237, 23, 8, 0)
+    private val bread = Products("Bread", 200, 4, 17, 20)
+    private val kolbasa = Products("Kolbasa", 300, 34, 8, 9)
+    private val cucumber = Products("Cucumber", 5, 20, 30, 6)
 
     private val syrnyky = Meals ("Syrnyky", mutableListOf(bread))
     private val varenyky = Meals ("Varenyky", mutableListOf(bread, chicken))
@@ -51,6 +51,11 @@ class MealsMenuFragment : Fragment(), MealsMenuAdapter.RecyclerViewEvent {
         recyclerViewMeal.adapter = mealsMenuAdapter
 
         fillProgressBars(list, view)
+
+        val btn_constructor = view.findViewById<Button>(R.id.btn_add)
+        btn_constructor.setOnClickListener{
+            findNavController().navigate((R.id.action_mealsMenuFragment_to_mealsConstructorFragment))
+        }
 
         val btn = view.findViewById<Button>(R.id.button_param)
         btn.setOnClickListener{

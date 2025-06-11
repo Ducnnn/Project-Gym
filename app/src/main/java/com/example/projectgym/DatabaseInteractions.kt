@@ -9,6 +9,7 @@ import com.kizitonwose.calendar.core.WeekDay
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
+import java.time.LocalDate
 
 
 class DatabaseInteractions {
@@ -67,6 +68,18 @@ class DatabaseInteractions {
     ) {
 
         db.collection("users").document(userId).update(mapOf("macroGoals" to macroGoals))
+    }
+
+    fun addMealToDay (
+        date: LocalDate,
+        meal: Meals
+    ) {
+        val docRef = db.document("${pathToUser}MealDays/${date}")
+        try {
+            docRef.set(meal).addOnSuccessListener { Log. i("addMealToDay", "Success: ${date}") }
+        } catch (e: Exception) {
+            Log.e ("Database addMealToDay", "Failed to add meal, exception: ${date}")
+        }
     }
 
 

@@ -65,7 +65,11 @@
         android:id="@+id/mealsConstructorFragment"
         android:name="com.example.projectgym.MealsConstructorFragment"
         android:label="fragment_meals_constructor"
-        tools:layout="@layout/fragment_meals_constructor" />
+        tools:layout="@layout/fragment_meals_constructor" >
+        <action
+            android:id="@+id/action_mealsConstructorFragment_to_mealsMenuFragment"
+            app:destination="@id/mealsMenuFragment" />
+    </fragment>
     <fragment
         android:id="@+id/dayConstructorFragment"
         android:name="com.example.projectgym.DayConstructorFragment"

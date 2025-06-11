@@ -70,7 +70,7 @@ class CurDay(
     // val date
 )
 
-class ListMeals(
+data class ListMeals(
     var meals: MutableList<Meals> = mutableListOf()
 ) {
     fun addMeal(meal: Meals) {
@@ -78,21 +78,17 @@ class ListMeals(
     }
 }
 
-class Meals(
+data class Meals(
     var name: String,
     var products: MutableList<Products> = mutableListOf()
-) {
-    fun addProducts(product: Products) {
-        products.add(product)
-    }
-}
+)
 
-class Products(
+data class Products(
     var name: String,
-    var calories: Double,
-    var proteins: Double,
-    var fats: Double,
-    var carbs: Double
+    var calories: Int,
+    var proteins: Int,
+    var fats: Int,
+    var carbs: Int
 )
 
 data class MacroResult(
