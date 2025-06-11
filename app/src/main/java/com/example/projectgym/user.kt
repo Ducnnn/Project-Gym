@@ -9,6 +9,7 @@ class User(
     var height: Float,
     var weight: Float,
     var gender: String,
+    var goal: String,
     var program: MutableList<TranDay>
 )
 
@@ -52,7 +53,15 @@ class Exercise(
     var description: String = "",
     var sets: MutableList<Set> = mutableListOf(Set(0, 0)),
     var isCompleted : Boolean = false
-)
+){
+    fun clearSets(){
+        for(set in sets){
+            set.reps = 0
+            set.weight = 0
+            isCompleted = false
+        }
+    }
+}
 
 class Set(var reps: Int = 0, var weight: Int = 0)
 
@@ -84,6 +93,13 @@ class Products(
     var proteins: Double,
     var fats: Double,
     var carbs: Double
+)
+
+data class MacroResult(
+    var protein: Double,
+    var fats: Double,
+    var carbs: Double,
+    var calories: Double
 )
 
 
