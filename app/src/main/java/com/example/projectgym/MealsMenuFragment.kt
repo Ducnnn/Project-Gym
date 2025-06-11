@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.annotation.ContentView
@@ -52,10 +53,6 @@ class MealsMenuFragment : Fragment(), MealsMenuAdapter.RecyclerViewEvent {
 
         fillProgressBars(list, view)
 
-        val proteinClick = view.findViewById<ProgressBar>(R.id.progress_proteins)
-        proteinClick.setOnClickListener{
-
-        }
 
 
 
