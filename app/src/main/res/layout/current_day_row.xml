@@ -13,7 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:focusable="true"
-        android:focusableInTouchMode="true">
+        android:focusableInTouchMode="true"
+        android:background="@drawable/layout_bg">
 
         <ImageView
             android:id="@+id/img_exercise_icon"
@@ -30,6 +31,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
+            android:textSize="24sp"
+            android:textColor="@color/white"
+            android:fontFamily="sans-serif-black"
             android:text="TextView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -37,16 +41,18 @@
 
         <ToggleButton
             android:id="@+id/tgbtn_finished"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="48dp"
             android:layout_marginTop="4dp"
             android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
             android:button="@drawable/checkmark_not_checked"
             android:textOff="not Finished"
             android:textOn="Finished"
             android:textSize="10sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@drawable/layout_bgg"/>
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/materialCardView"
@@ -64,7 +70,8 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:background="@drawable/layout_bg">
 
                 <Spinner
                     android:id="@+id/spinner_sets"

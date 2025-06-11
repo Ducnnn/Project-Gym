@@ -9,13 +9,15 @@
     <androidx.constraintlayout.widget.ConstraintLayout
 
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#78B0F0">
 
 
         <ImageView
-            android:id="@+id/profileImage"
+            android:id="@+id/imageView2"
             android:layout_width="150dp"
-            android:layout_height="170dp"
+            android:src="@drawable/user_pic"
+            android:layout_height="300dp"
             app:layout_constraintBottom_toTopOf="@+id/detailsContainer"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -26,84 +28,113 @@
         <LinearLayout
             android:id="@+id/detailsContainer"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="490dp"
+            android:background="@drawable/layout_bg"
             android:orientation="vertical"
             android:padding="90dp"
             app:layout_constraintBottom_toTopOf="@+id/btn_logout"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/profileImage" />
+            app:layout_constraintRight_toRightOf="parent" />
 
         <TextView
             android:id="@+id/ageLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="40dp"
             android:text="Age"
-            android:textSize="16sp"
+            android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintLeft_toLeftOf="@id/detailsContainer"
-            app:layout_constraintTop_toTopOf="@id/detailsContainer" />
+            app:layout_constraintTop_toTopOf="@id/detailsContainer"
+            android:textColor="@color/white"/>
 
         <TextView
             android:id="@+id/ageValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="25dp"
             android:text="17"
+            android:textSize="24dp"
             app:layout_constraintBottom_toTopOf="@id/heightLabel"
             app:layout_constraintLeft_toLeftOf="@id/detailsContainer"
-            app:layout_constraintTop_toBottomOf="@id/ageLabel" />
+            app:layout_constraintTop_toBottomOf="@id/ageLabel"
+            android:textColor="@color/black"/>
 
         <TextView
             android:id="@+id/heightLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="25dp"
             android:text="Height"
-            android:textSize="16sp"
+            android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintLeft_toLeftOf="@id/detailsContainer"
-            app:layout_constraintTop_toBottomOf="@id/ageValue" />
+            app:layout_constraintTop_toBottomOf="@id/ageValue"
+            android:textColor="@color/white"/>
 
         <TextView
             android:id="@+id/heightValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="25dp"
             android:text="180 cm"
+            android:textSize="24sp"
             app:layout_constraintLeft_toLeftOf="@id/detailsContainer"
-            app:layout_constraintTop_toBottomOf="@id/heightLabel" />
+            app:layout_constraintTop_toBottomOf="@id/heightLabel"
+            android:textColor="@color/black"/>
 
         <TextView
             android:id="@+id/weightLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="25dp"
             android:text="Weight"
-            android:textSize="16sp"
+            android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintLeft_toLeftOf="@id/detailsContainer"
-            app:layout_constraintTop_toBottomOf="@id/heightValue" />
+            app:layout_constraintTop_toBottomOf="@id/heightValue"
+            android:textColor="@color/white"/>
 
         <TextView
             android:id="@+id/weightValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="25dp"
             android:text="80 kg"
+            android:textSize="24sp"
             app:layout_constraintLeft_toLeftOf="@id/detailsContainer"
-            app:layout_constraintTop_toBottomOf="@id/weightLabel" />
+            app:layout_constraintTop_toBottomOf="@id/weightLabel"
+            android:textColor="@color/black"/>
 
         <TextView
             android:id="@+id/genderLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="25dp"
             android:text="Gender"
-            android:textSize="16sp"
+            android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintLeft_toLeftOf="@id/detailsContainer"
-            app:layout_constraintTop_toBottomOf="@id/weightValue" />
+            app:layout_constraintTop_toBottomOf="@id/weightValue"
+            android:textColor="@color/white"/>
 
         <TextView
             android:id="@+id/genderValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="25dp"
             android:text="Male"
+            android:textSize="24sp"
+            android:textColor="@color/black"
             app:layout_constraintLeft_toLeftOf="@id/detailsContainer"
             app:layout_constraintTop_toBottomOf="@id/genderLabel" />
 
@@ -114,8 +145,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:backgroundTint="#E53935"
+            android:backgroundTint="#2B47CE"
             android:text="Logout"
+            android:textSize="24sp"
+            android:fontFamily="sans-serif-black"
             android:textAllCaps="false"
             android:textColor="#FFFFFF"
             app:layout_constraintBottom_toBottomOf="parent"

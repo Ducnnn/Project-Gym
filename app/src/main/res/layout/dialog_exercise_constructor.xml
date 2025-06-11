@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_margin="6dp">
+    android:layout_margin="6dp"
+    android:background="@drawable/layout_bg">
 
 
     <TextView
@@ -17,10 +18,13 @@
         android:layout_marginEnd="4dp"
         android:layout_marginBottom="4dp"
         android:text="Name:"
+        android:textColor="@color/white"
+        android:fontFamily="sans-serif-black"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/layout_bgg"/>
 
     <TextView
         android:textSize="24sp"
@@ -32,10 +36,13 @@
         android:layout_marginEnd="4dp"
         android:layout_marginBottom="4dp"
         android:text="Muscle:"
+        android:textColor="@color/white"
+        android:fontFamily="sans-serif-black"
         app:layout_constraintBottom_toTopOf="@+id/guideline3"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline2" />
+        app:layout_constraintTop_toTopOf="@+id/guideline2"
+        android:background="@drawable/layout_bgg"/>
 
     <TextView
         android:textSize="24sp"
@@ -46,11 +53,14 @@
         android:layout_marginTop="4dp"
         android:layout_marginEnd="4dp"
         android:layout_marginBottom="4dp"
+        android:textColor="@color/white"
+        android:fontFamily="sans-serif-black"
         android:text="Description:"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/guideline3" />
+        app:layout_constraintTop_toTopOf="@id/guideline3"
+        android:background="@drawable/layout_bgg"/>
 
     <EditText
         android:id="@+id/editText_exercise_name"

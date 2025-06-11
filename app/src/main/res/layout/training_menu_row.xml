@@ -9,7 +9,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp">
+        android:layout_height="60dp"
+        android:background="@drawable/layout_bg">
 
         <TextView
             android:id="@+id/tv_day_name"
@@ -20,8 +21,11 @@
             android:ellipsize="end"
             android:gravity="center"
             android:maxLines="1"
+            android:background="@drawable/layout_bgg"
             android:text="TextView"
             android:textSize="30sp"
+            android:fontFamily="sans-serif-black"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btn_settings"
             app:layout_constraintStart_toStartOf="parent"

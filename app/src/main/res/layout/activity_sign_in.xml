@@ -5,7 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignInActivity">
+    tools:context=".SignInActivity"
+    android:background="#78B0F0">
 
     <ImageView
         android:id="@+id/imageView"
@@ -55,7 +56,8 @@
         android:layout_marginTop="40dp"
         android:layout_marginEnd="25dp"
         android:text="@string/sign_in"
-        android:textSize="24sp"
+        android:textSize="30sp"
+        android:fontFamily="sans-serif-black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
@@ -72,6 +74,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtext_password_signIn" />
+        app:layout_constraintTop_toBottomOf="@+id/edtext_password_signIn"
+        android:backgroundTint="#2B47CE"
+        android:textSize="30sp"
+        android:textColor="@color/white"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

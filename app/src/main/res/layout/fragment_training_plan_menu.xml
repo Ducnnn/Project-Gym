@@ -9,7 +9,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#78B0F0">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/calendarLayout"
@@ -17,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="24dp"
             android:layout_marginTop="20dp"
-            android:background="@drawable/circular_rectangle"
+            android:background="@drawable/layout_bg"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -62,6 +63,7 @@
             android:layout_marginBottom="50dp"
             android:orientation="vertical"
             android:weightSum="1.0"
+            android:background="@drawable/layout_bgg"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -73,6 +75,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="0.2"
+                android:background="@drawable/layout_bg"
+                android:fontFamily="sans-serif-black"
                 android:gravity="center"
                 android:text="List of Days"
                 android:textSize="24sp" />
@@ -82,14 +86,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="0.6"
-                tools:listitem="@layout/training_menu_row" />
+                tools:listitem="@layout/training_menu_row"
+              />
 
             <Button
                 android:id="@+id/btn_add_day"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:layout_margin="8dp"
                 android:layout_weight="0.2"
-                android:text="Button" />
+                android:backgroundTint="#2B47CE"
+                android:fontFamily="sans-serif-black"
+                android:text="Add new workout"
+                android:textSize="24sp" />
 
         </LinearLayout>
 
