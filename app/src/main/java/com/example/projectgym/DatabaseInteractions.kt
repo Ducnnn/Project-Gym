@@ -24,7 +24,14 @@ class DatabaseInteractions {
         val userData = hashMapOf(
             "email" to email,
             "displayName" to displayName,
-            "createdAt" to createdAt
+            "createdAt" to createdAt,
+            "gender" to "male",
+            "height" to 180,
+            "weight" to 80,
+            "goal" to "maintenance",
+            "age" to 18,
+            "activity" to "average",
+            "macroGoals" to MacroResult(protein = 150.0, fats = 100.0, carbs = 200.0, calories = 1500.0)
         )
         db.collection("users").document(userId)
             .set(userData)
@@ -35,6 +42,33 @@ class DatabaseInteractions {
                 Log.w("FIRESTORE", "Error writing user data for UID: $userId", e)
             }
     }
+
+    fun updateParameters(
+        activity:String,
+        gender: String,
+        height: Int,
+        weight: Int,
+        goal: String,
+        age: Int
+    ) {
+        val updatedUserData = hashMapOf<String, Any>(
+            "activity" to activity,
+            "gender" to gender,
+            "height" to height,
+            "weight" to weight,
+            "goal" to goal,
+            "age" to age
+        )
+        db.collection("users").document(userId).update(updatedUserData)
+    }
+
+    fun setRecommendedMacros (
+        macroGoals: MacroResult
+    ) {
+
+        db.collection("users").document(userId).update(mapOf("macroGoals" to macroGoals))
+    }
+
 
     fun addDayToWeek(day: TranDay, date: WeekDay) {
         val docRef = db.document("${pathToUser}TrainingDays/${date.date}")

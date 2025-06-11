@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="SpinnerActivity_items">
+        <item>Little-No Exercise</item>
+        <item>Light (1-3 days/week)</item>
+        <item>Average (3-5 days/week)</item>
+        <item>Active (6-7 days/week)</item>
+    </string-array>
+</resources>

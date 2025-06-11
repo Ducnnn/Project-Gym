@@ -12,73 +12,74 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
         <LinearLayout
             android:id="@+id/meals_graph"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_width="310dp"
+            android:layout_height="155dp"
             android:layout_margin="24dp"
             android:orientation="horizontal"
             android:weightSum="1.3"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="@+id/guideline30">
 
             <ProgressBar
-                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                android:progress="10"
                 android:id="@+id/progress_calories"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="4dp"
                 android:layout_weight="0.3"
-                android:rotation = "270"
-                android:progressTint="#FF0000"/>
+                android:progress="10"
+                android:progressTint="#FF0000"
+                android:rotation="270" />
 
             <ProgressBar
-                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                android:progress="20"
                 android:id="@+id/progress_proteins"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="4dp"
                 android:layout_weight="0.25"
-                android:rotation="270"
-                android:progressTint="#0E32B3" />
+                android:progress="20"
+                android:progressTint="#0E32B3"
+                android:rotation="270" />
 
             <ProgressBar
-                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                android:progress="30"
                 android:id="@+id/progress_carbohydrates"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="4dp"
                 android:layout_weight="0.25"
-                android:rotation="270"
-                android:progressTint="#00FF00"/>
+                android:progress="30"
+                android:progressTint="#00FF00"
+                android:rotation="270" />
 
             <ProgressBar
-                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                android:progress="70"
                 android:id="@+id/progress_fats"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="4dp"
                 android:layout_weight="0.25"
-                android:rotation="270"
-                android:progressTint="#F600FF" />
+                android:progress="70"
+                android:progressTint="#F600FF"
+                android:rotation="270" />
 
             <ProgressBar
-                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                android:progress="40"
                 android:id="@+id/progress_water"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="4dp"
                 android:layout_weight="0.25"
-                android:rotation="270"
-                android:progressTint="#FFEF00"/>
+                android:progress="40"
+                android:progressTint="#FFEF00"
+                android:rotation="270" />
         </LinearLayout>
-
 
         <LinearLayout
             android:id="@+id/linearLayout2"
@@ -96,8 +97,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="0.2"
-                android:text="Meals"
                 android:gravity="center"
+                android:text="Meals"
                 android:textSize="24sp" />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -115,6 +116,98 @@
                 android:text="Plus" />
         </LinearLayout>
 
+        <Button
+            android:id="@+id/button_param"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:text="Get suggested nutrition"
+            app:layout_constraintBottom_toTopOf="@+id/guideline27"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline26"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="307dp" />
+
+        <EditText
+            android:id="@+id/editTextCarbs"
+            android:layout_width="175dp"
+            android:layout_height="33dp"
+            android:ems="10"
+            android:inputType="text"
+            android:text=""
+            app:layout_constraintBottom_toTopOf="@+id/guideline29"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline28"
+            app:layout_constraintTop_toTopOf="@+id/guideline27" />
+
+        <EditText
+            android:id="@+id/editTextFats"
+            android:layout_width="175dp"
+            android:layout_height="33dp"
+            android:ems="10"
+            android:inputType="text"
+            android:text=""
+            app:layout_constraintBottom_toTopOf="@+id/guideline30"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline28"
+            app:layout_constraintTop_toTopOf="@+id/guideline29" />
+
+        <EditText
+            android:id="@+id/editTextProteins"
+            android:layout_width="175dp"
+            android:layout_height="33dp"
+            android:ems="10"
+            android:inputType="text"
+            android:text=""
+            app:layout_constraintBottom_toTopOf="@+id/guideline30"
+            app:layout_constraintEnd_toStartOf="@+id/guideline28"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline29" />
+
+        <EditText
+            android:id="@+id/editTextCalories"
+            android:layout_width="175dp"
+            android:layout_height="33dp"
+            android:ems="10"
+            android:inputType="text"
+            android:text=""
+            app:layout_constraintBottom_toTopOf="@+id/guideline29"
+            app:layout_constraintEnd_toStartOf="@+id/guideline28"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline27" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline27"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="50dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline28"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="205dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline29"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="100dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline30"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="150dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

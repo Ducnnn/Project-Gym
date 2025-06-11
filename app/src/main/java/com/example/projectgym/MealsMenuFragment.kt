@@ -6,9 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.annotation.ContentView
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -29,7 +31,6 @@ class MealsMenuFragment : Fragment(), MealsMenuAdapter.RecyclerViewEvent {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
@@ -45,16 +46,16 @@ class MealsMenuFragment : Fragment(), MealsMenuAdapter.RecyclerViewEvent {
         super.onViewCreated(view, savedInstanceState)
 
         val mealsMenuAdapter = MealsMenuAdapter(list, this)
-
         val recyclerViewMeal = view.findViewById<RecyclerView>(R.id.recycler_meals)
         recyclerViewMeal.layoutManager = LinearLayoutManager(view.context)
         recyclerViewMeal.adapter = mealsMenuAdapter
 
         fillProgressBars(list, view)
 
-        val proteinClick = view.findViewById<ProgressBar>(R.id.progress_proteins)
-        proteinClick.setOnClickListener{
 
+        val btn = view.findViewById<Button>(R.id.button_param)
+        btn.setOnClickListener{
+            findNavController().navigate(R.id.action_mealsMenuFragment_to_parametersFragment)
         }
 
 
