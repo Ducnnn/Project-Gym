@@ -11,10 +11,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.EditText
 import android.widget.Spinner
+import android.widget.TextView
 import com.example.projectgym.R.array
 import com.example.projectgym.R.array.*
 import com.google.firebase.auth.FirebaseAuth
+import org.w3c.dom.Text
 
 
 class ProfileMenuFragment : Fragment() {
@@ -35,14 +38,12 @@ class ProfileMenuFragment : Fragment() {
     @SuppressLint("ResourceType")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val genderSpinner = view.findViewById<Spinner>(R.id.spinnerGender)
-        val adapter = ArrayAdapter.createFromResource(
-            requireContext(),
-            R.array.SpinnerGender_items,
-            android.R.layout.simple_spinner_item
-        )
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        genderSpinner.adapter = adapter
+        val ageLabelProfile = view.findViewById<TextView>(R.id.ageLabelProfile)
+        val heightLabelProfile = view.findViewById<TextView>(R.id.heightLabelProfile)
+        val weightLabelProfile = view.findViewById<TextView>(R.id.weightLabelProfile)
+        val genderLabelProfile = view.findViewById<TextView>(R.id.genderLabelProfile)
+        val goalLabelProfile = view.findViewById<TextView>(R.id.goalLabelProfile)
+        val activityLabelProfile = view.findViewById<TextView>(R.id.activityLabelProfile)
 
         val btnLogout = view.findViewById<Button>(R.id.btn_logout)
         btnLogout.setOnClickListener {

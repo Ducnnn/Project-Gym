@@ -32,7 +32,7 @@
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/guideline8"
-            app:layout_constraintEnd_toStartOf="@+id/editProfHeight"
+            app:layout_constraintEnd_toStartOf="@+id/guideline5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline7" />
 
@@ -44,7 +44,7 @@
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/guideline7"
-            app:layout_constraintEnd_toStartOf="@+id/editProfAge"
+            app:layout_constraintEnd_toStartOf="@+id/guideline5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline6" />
 
@@ -56,7 +56,7 @@
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/genderLabel"
-            app:layout_constraintEnd_toStartOf="@+id/editProfWeight"
+            app:layout_constraintEnd_toStartOf="@+id/guideline5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline8" />
 
@@ -71,6 +71,30 @@
             app:layout_constraintEnd_toStartOf="@+id/guideline5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline9" />
+
+        <TextView
+            android:id="@+id/goalLabel"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="Goal"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/guideline31"
+            app:layout_constraintEnd_toStartOf="@+id/guideline5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/genderLabel" />
+
+        <TextView
+            android:id="@+id/activityLabel"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="Activity"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/guideline32"
+            app:layout_constraintEnd_toStartOf="@+id/guideline5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/goalLabel" />
 
         <Button
             android:id="@+id/btn_logout"
@@ -87,41 +111,14 @@
             app:layout_constraintRight_toRightOf="parent" />
 
         <EditText
-            android:id="@+id/editProfAge"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:ems="10"
-            android:inputType="text"
-            android:text=""
-            app:layout_constraintBottom_toTopOf="@+id/editProfHeight"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline5"
-            app:layout_constraintTop_toTopOf="@+id/guideline6" />
-
-        <EditText
-            android:id="@+id/editProfWeight"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:ems="10"
-            android:inputType="text"
-            android:text=""
-            app:layout_constraintBottom_toTopOf="@+id/guideline9"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline5"
-            app:layout_constraintTop_toTopOf="@+id/guideline8" />
-
-        <EditText
             android:id="@+id/editProfHeight"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:ems="10"
             android:inputType="text"
             android:text=""
-            app:layout_constraintBottom_toTopOf="@+id/guideline8"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline5"
-            app:layout_constraintTop_toTopOf="@+id/guideline7"
-            app:layout_constraintVertical_bias="0.545" />
+            tools:layout_editor_absoluteX="411dp"
+            tools:layout_editor_absoluteY="395dp" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline5"
@@ -165,15 +162,79 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_begin="560dp" />
 
-        <Spinner
-            android:id="@+id/spinnerGender"
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline31"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="620dp" />
+
+        <TextView
+            android:id="@+id/ageLabelProfile"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:entries="@array/SpinnerGender_items"
+            android:text=""
+            app:layout_constraintBottom_toTopOf="@+id/guideline7"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ageLabel"
+            app:layout_constraintTop_toTopOf="@+id/guideline6" />
+
+        <TextView
+            android:id="@+id/heightLabelProfile"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text=""
+            app:layout_constraintBottom_toTopOf="@+id/guideline8"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/heightLabel"
+            app:layout_constraintTop_toTopOf="@+id/guideline7" />
+
+        <TextView
+            android:id="@+id/weightLabelProfile"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text=""
+            app:layout_constraintBottom_toTopOf="@+id/guideline9"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/weightLabel"
+            app:layout_constraintTop_toTopOf="@+id/guideline8" />
+
+        <TextView
+            android:id="@+id/genderLabelProfile"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text=""
             app:layout_constraintBottom_toTopOf="@+id/guideline10"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/genderLabel"
+            app:layout_constraintStart_toStartOf="@+id/guideline5"
             app:layout_constraintTop_toTopOf="@+id/guideline9" />
+
+        <TextView
+            android:id="@+id/goalLabelProfile"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text=""
+            app:layout_constraintBottom_toTopOf="@+id/guideline31"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/goalLabel"
+            app:layout_constraintTop_toTopOf="@+id/guideline10" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline32"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="680dp" />
+
+        <TextView
+            android:id="@+id/activityLabelProfile"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text=""
+            app:layout_constraintBottom_toTopOf="@+id/guideline32"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/activityLabel"
+            app:layout_constraintTop_toTopOf="@+id/guideline31" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
