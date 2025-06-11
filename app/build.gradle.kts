@@ -62,7 +62,6 @@ dependencies {
     implementation(libs.googleid)
     implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.5.0")
     implementation("androidx.cardview:cardview:1.0.0")
-    implementation("com.github.blackfizz:eazegraph:1.2.2@aar")
     implementation("com.nineoldandroids:library:2.4.0")
 
     implementation("com.kizitonwose.calendar:view:2.7.0")
@@ -71,5 +70,7 @@ dependencies {
     implementation("com.google.firebase:firebase-firestore")
     implementation("com.android.volley:volley:1.2.1")
     implementation("com.google.code.gson:gson:2.8.9")
+    //PieChart
+    implementation("com.github.PhilJay:MPAndroidChart:v3.0.3")
 
 }

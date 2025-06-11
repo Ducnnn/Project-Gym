@@ -35,16 +35,9 @@ class ProfileMenuFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_profile_menu, container, false)
     }
 
-    @SuppressLint("ResourceType")
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val ageLabelProfile = view.findViewById<TextView>(R.id.ageLabelProfile)
-        val heightLabelProfile = view.findViewById<TextView>(R.id.heightLabelProfile)
-        val weightLabelProfile = view.findViewById<TextView>(R.id.weightLabelProfile)
-        val genderLabelProfile = view.findViewById<TextView>(R.id.genderLabelProfile)
-        val goalLabelProfile = view.findViewById<TextView>(R.id.goalLabelProfile)
-        val activityLabelProfile = view.findViewById<TextView>(R.id.activityLabelProfile)
-
         val btnLogout = view.findViewById<Button>(R.id.btn_logout)
         btnLogout.setOnClickListener {
             Log.d("SignOut", "Start")

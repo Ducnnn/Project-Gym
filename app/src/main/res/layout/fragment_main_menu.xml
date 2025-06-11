@@ -43,23 +43,33 @@
 
             <Button
                 android:id="@+id/program_button"
-                android:layout_width="171dp"
-                android:layout_height="88dp"
-                android:layout_marginStart="24sp"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="20dp"
                 android:backgroundTint="#AB3BBC"
-                android:text="Program Button"
+                android:fontFamily="sans-serif-black"
+                android:text="CONSTRUCT PLAN"
                 android:textColor="#FFFFFF"
+                android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/list_of_exercises"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/list_of_exercises"
-                android:layout_width="132dp"
-                android:layout_height="101dp"
-                android:layout_marginEnd="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="20dp"
                 android:backgroundTint="#AB3BBC"
-                android:text="List of Exercises"
+                android:fontFamily="sans-serif-black"
+                android:text="CURRENT DAY"
+                android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -92,6 +102,20 @@
                 app:layout_constraintDimensionRatio="W,1:2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <com.github.mikephil.charting.charts.PieChart
+                android:id="@+id/pieChart"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+            </com.github.mikephil.charting.charts.PieChart>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

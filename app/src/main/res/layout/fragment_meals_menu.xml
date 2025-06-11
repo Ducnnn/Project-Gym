@@ -10,7 +10,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/main_constraint_meals"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#78B0F0">
 
 
         <LinearLayout
@@ -23,6 +24,8 @@
             app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            
+            android:background="@drawable/layout_bg"
             app:layout_constraintTop_toTopOf="@+id/guideline30">
 
             <ProgressBar
@@ -90,13 +93,16 @@
             android:weightSum="1.0"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            android:background="@drawable/layout_bgg">
 
             <TextView
                 android:id="@+id/meals"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="0.2"
+                android:background="@drawable/layout_bg"
+                android:fontFamily="sans-serif-black"
                 android:gravity="center"
                 android:text="Meals"
                 android:textSize="24sp" />
@@ -113,7 +119,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="0.2"
-                android:text="Plus" />
+                android:text="Plus"
+                android:backgroundTint="#2B47CE"
+                android:layout_margin="8dp"
+                android:textSize="24sp"
+                android:fontFamily="sans-serif-black"/>
         </LinearLayout>
 
         <Button

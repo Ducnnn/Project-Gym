@@ -1,6 +1,7 @@
 package com.example.projectgym
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +15,10 @@ import androidx.core.view.children
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.github.mikephil.charting.charts.PieChart
+import com.github.mikephil.charting.data.PieData
+import com.github.mikephil.charting.data.PieDataSet
+import com.github.mikephil.charting.data.PieEntry
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.kizitonwose.calendar.core.CalendarDay
@@ -41,6 +46,7 @@ class MainMenuFragment : Fragment() {
         val callback = requireActivity().onBackPressedDispatcher.addCallback(this) {}
         callback.isEnabled
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -48,8 +54,36 @@ class MainMenuFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_main_menu, container, false)
     }
 
+    //setup pie chart
+    private fun setupPieChart(pieChart: PieChart){
+        val pieEntries = arrayListOf<PieEntry>()
+        pieEntries.add(PieEntry(30.0f))
+        pieEntries.add(PieEntry(40.0f))
+        pieEntries.add(PieEntry(35.0f))
+        //Setup animation
+        pieChart.animateXY(1000,1000)
+        //Setup colors
+        val pieDataSet = PieDataSet(pieEntries,"Protein,Fats,Carbohydrates")
+        pieDataSet.setColors(
+            resources.getColor(R.color.Protein),
+            resources.getColor(R.color.Fats),
+            resources.getColor(R.color.Carbohydrates)
+        )
+        //Setup Pie Chart Data
+        val pieData = PieData(pieDataSet)
+        pieData.setDrawValues(false)
+        pieChart.data = pieData
+        pieChart.isRotationEnabled = false
+        pieChart.setTouchEnabled(false)
+        pieChart.legend.isEnabled = (true)
+        pieChart.description.isEnabled = (false)
+
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val pieChart = view.findViewById<PieChart>(R.id.pieChart)
+        setupPieChart(pieChart)
+
         val tvDateAndTrainingDay = view.findViewById<TextView>(R.id.date_and_training_day)
 
         val calendar = Calendar.getInstance().time
@@ -95,14 +129,22 @@ class MainMenuFragment : Fragment() {
 
         attendanceCalendarView.setup(startMonth, endMonth, daysOfWeek.first())
         attendanceCalendarView.scrollToMonth(YearMonth.now())
-        attendanceCalendarView.dayBinder = AttendanceDayBinder(lifecycleScope, view)
+        val attendanceDayBinder=  AttendanceDayBinder(lifecycleScope, view)
+        attendanceDayBinder.setOnClickListener(object : AttendanceDayBinder.OnClickListener{
+            override fun onClick() {
+                Log.i("current day1", "clicked")
+                findNavController().navigate(R.id.action_mainMenuFragment_to_currentDayFragment)
+                Log.i("current day2", "clicked")
+            }
+        })
+        attendanceCalendarView.dayBinder = attendanceDayBinder
     }
 
 
     class AttendanceDayBinder(private val scope: CoroutineScope, private val viewFragment: View) :
         MonthDayBinder<AttendanceDayBinder.AttendanceDayViewContainer> {
         override fun create(view: View) = AttendanceDayViewContainer(view)
-
+        private var onClickListener: OnClickListener? = null
         override fun bind(container: AttendanceDayViewContainer, data: CalendarDay) {
             container.M_job = scope.launch {
                 val trainingDay =
@@ -112,7 +154,7 @@ class MainMenuFragment : Fragment() {
                             WeekDayPosition.InDate
                         )
                     )
-                val percentage : Int
+                val percentage: Int
                 var finishedExercises = 0
                 for (exercise in trainingDay.exercises) {
                     if (exercise.isCompleted) {
@@ -120,7 +162,6 @@ class MainMenuFragment : Fragment() {
                     }
                 }
                 percentage = when {
-
                     trainingDay.exercises.isEmpty() -> -1
                     data.date.isAfter(LocalDate.now()) -> 101
                     else -> (finishedExercises.toDouble() / trainingDay.exercises.size * 100).toInt()
@@ -138,11 +179,21 @@ class MainMenuFragment : Fragment() {
 
                 container.dayView.setBackgroundResource(bgDrawableRes)
 
-                container.dayView.setOnLongClickListener {
-                    showDayInfoDialog(viewFragment, trainingDay)
-                    true
+                container.dayView.setOnClickListener {
+                    if (LocalDate.now().equals(data.date)) {
+
+                        onClickListener?.onClick()
+                        Log.i("current day", "clicked")
+                    } else {
+                        showDayInfoDialog(viewFragment, trainingDay)
+                    }
+
                 }
             }
+        }
+
+        fun setOnClickListener(listener: OnClickListener?) {
+            this.onClickListener = listener
         }
 
         private fun showDayInfoDialog(view: View, day: TranDay) {
@@ -161,17 +212,16 @@ class MainMenuFragment : Fragment() {
 
         }
 
-        open class AttendanceDayViewContainer(view: View) : ViewContainer(view) {
+        inner class AttendanceDayViewContainer(view: View) : ViewContainer(view) {
             val dayView: View = view.findViewById(R.id.dayView)
             var M_job: Job? = null
-
-            init {
-                view.setOnLongClickListener {
-
-                    true
-                }
-            }
         }
+
+        interface OnClickListener {
+            fun onClick()
+        }
+
     }
+
 }
 
