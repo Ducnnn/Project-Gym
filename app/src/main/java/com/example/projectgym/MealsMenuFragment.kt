@@ -46,7 +46,6 @@ class MealsMenuFragment : Fragment(), MealsMenuAdapter.RecyclerViewEvent {
         super.onViewCreated(view, savedInstanceState)
 
         val mealsMenuAdapter = MealsMenuAdapter(list, this)
-
         val recyclerViewMeal = view.findViewById<RecyclerView>(R.id.recycler_meals)
         recyclerViewMeal.layoutManager = LinearLayoutManager(view.context)
         recyclerViewMeal.adapter = mealsMenuAdapter

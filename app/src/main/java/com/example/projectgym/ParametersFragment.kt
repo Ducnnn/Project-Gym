@@ -1,5 +1,6 @@
 package com.example.projectgym
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -24,6 +25,7 @@ class ParametersFragment: Fragment() {
         return inflater.inflate(R.layout.fragment_user_parameters, container, false)
     }
 
+    @SuppressLint("SuspiciousIndentation")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val genderSpinner = view.findViewById<Spinner>(R.id.spinnerGenderParam)
@@ -45,6 +47,16 @@ class ParametersFragment: Fragment() {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         goalSpinner.adapter = adapter2
 
+        val activityLevelSpinner = view.findViewById<Spinner>(R.id.spinnerActivityParam)
+        val adapter3 = ArrayAdapter.createFromResource(
+            requireContext(),
+            R.array.SpinnerActivity_items,
+            android.R.layout.simple_spinner_item
+        )
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        activityLevelSpinner.adapter = adapter3
+
+        val activity = view.findViewById<Spinner>(R.id.spinnerActivityParam)
         val age = view.findViewById<EditText>(R.id.editTextText3)
         val height = view.findViewById<EditText>(R.id.editTextText2)
         val weight = view.findViewById<EditText>(R.id.editTextText)
@@ -54,9 +66,22 @@ class ParametersFragment: Fragment() {
         val submitBtn = view.findViewById<Button>(R.id.btn_submit)
         submitBtn.setOnClickListener{
             if (age.text.isNotEmpty() && height.text.isNotEmpty() && weight.text.isNotEmpty())
-                DatabaseInteractions().updateParameters(gender.selectedItem.toString(), height.text.toString().toInt()
-                    ,weight.text.toString().toInt(), goal.selectedItem.toString(), age.text.toString().toInt())
-                findNavController().navigate(R.id.action_parametersFragment_to_mealsMenuFragment)
+                DatabaseInteractions().updateParameters(
+                    activity.selectedItem.toString(),
+                    gender.selectedItem.toString(),
+                    height.text.toString().toInt(),
+                    weight.text.toString().toInt(),
+                    goal.selectedItem.toString(),
+                    age.text.toString().toInt())
+                val macros = CalculatorForMacros().calculateMacros(
+                    activity.selectedItem.toString(),
+                    gender.selectedItem.toString(),
+                    height.text.toString().toInt(),
+                    weight.text.toString().toInt(),
+                    goal.selectedItem.toString(),
+                    age.text.toString().toInt())
+                DatabaseInteractions().setRecommendedMacros(macros)
+            findNavController().navigate(R.id.action_parametersFragment_to_mealsMenuFragment)
         }
     }
 }

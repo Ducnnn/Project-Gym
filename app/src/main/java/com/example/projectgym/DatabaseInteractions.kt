@@ -28,7 +28,9 @@ class DatabaseInteractions {
             "height" to 180,
             "weight" to 80,
             "goal" to "maintenance",
-            "age" to 18
+            "age" to 18,
+            "activity" to "average",
+            "macroGoals" to MacroResult(protein = 150.0, fats = 100.0, carbs = 200.0, calories = 1500.0)
         )
         db.collection("users").document(userId)
             .set(userData)
@@ -41,13 +43,15 @@ class DatabaseInteractions {
     }
 
     fun updateParameters(
+        activity:String,
         gender: String,
         height: Int,
         weight: Int,
         goal: String,
-        age: Int,
+        age: Int
     ) {
         val updatedUserData = hashMapOf<String, Any>(
+            "activity" to activity,
             "gender" to gender,
             "height" to height,
             "weight" to weight,
@@ -56,6 +60,14 @@ class DatabaseInteractions {
         )
         db.collection("users").document(userId).update(updatedUserData)
     }
+
+    fun setRecommendedMacros (
+        macroGoals: MacroResult
+    ) {
+
+        db.collection("users").document(userId).update(mapOf("macroGoals" to macroGoals))
+    }
+
 
     fun addDayToWeek(day: TranDay, date: WeekDay) {
         val docRef = db.document("${pathToUser}TrainingDays/${date.date}")

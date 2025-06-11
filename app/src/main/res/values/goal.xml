@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="SpinnerGoal_items">
-        <item>Bulk</item>
-        <item>Cut</item>
-        <item>Maintenance</item>
+        <item>bulk</item>
+        <item>cut</item>
+        <item>maintenance</item>
     </string-array>
 </resources>

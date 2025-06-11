@@ -9,6 +9,7 @@ class User(
     var height: Float,
     var weight: Float,
     var gender: String,
+    var goal: String,
     var program: MutableList<TranDay>
 )
 
@@ -84,6 +85,13 @@ class Products(
     var proteins: Double,
     var fats: Double,
     var carbs: Double
+)
+
+data class MacroResult(
+    var protein: Double,
+    var fats: Double,
+    var carbs: Double,
+    var calories: Double
 )
 
 
