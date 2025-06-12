@@ -2,14 +2,13 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="6dp"
     android:background="@drawable/layout_bg">
 
 
     <TextView
-        android:textSize="24sp"
         android:id="@+id/tv_exercise_name"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -17,17 +16,18 @@
         android:layout_marginTop="4dp"
         android:layout_marginEnd="4dp"
         android:layout_marginBottom="4dp"
+        android:background="@drawable/layout_bgg"
+        android:fontFamily="sans-serif-black"
+        android:gravity="center_horizontal|center_vertical"
         android:text="Name:"
         android:textColor="@color/white"
-        android:fontFamily="sans-serif-black"
+        android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/layout_bgg"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:textSize="24sp"
         android:id="@+id/tv_muscle_group"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -35,17 +35,18 @@
         android:layout_marginTop="4dp"
         android:layout_marginEnd="4dp"
         android:layout_marginBottom="4dp"
+        android:background="@drawable/layout_bgg"
+        android:fontFamily="sans-serif-black"
+        android:gravity="center"
         android:text="Muscle:"
         android:textColor="@color/white"
-        android:fontFamily="sans-serif-black"
+        android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline3"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline2"
-        android:background="@drawable/layout_bgg"/>
+        app:layout_constraintTop_toTopOf="@+id/guideline2" />
 
     <TextView
-        android:textSize="24sp"
         android:id="@+id/tv_exercise_description"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -53,26 +54,29 @@
         android:layout_marginTop="4dp"
         android:layout_marginEnd="4dp"
         android:layout_marginBottom="4dp"
-        android:textColor="@color/white"
+        android:background="@drawable/layout_bgg"
         android:fontFamily="sans-serif-black"
-        android:text="Description:"
+        android:gravity="center"
+        android:text="Notes:"
+        android:textColor="@color/white"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/guideline3"
-        android:background="@drawable/layout_bgg"/>
+        app:layout_constraintTop_toTopOf="@id/guideline3" />
 
     <EditText
         android:id="@+id/editText_exercise_name"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="4dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="4dp"
         android:layout_marginBottom="4dp"
         android:ems="10"
+        android:gravity="center"
+        android:hint="Enter exercise name"
         android:inputType="text"
-        android:text="Name"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline"
@@ -80,12 +84,14 @@
 
     <Spinner
         android:id="@+id/spinner_muscle_groups"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="4dp"
         android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
         android:layout_marginBottom="4dp"
         app:layout_constraintBottom_toBottomOf="@id/guideline3"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/guideline"
         app:layout_constraintTop_toBottomOf="@id/guideline2" />
 
@@ -98,7 +104,8 @@
         android:layout_marginEnd="4dp"
         android:layout_marginBottom="4dp"
         android:ems="10"
-        android:gravity="start|top"
+        android:gravity="center"
+        android:hint="Enter exercise notes"
         android:inputType="textMultiLine"
         app:layout_constraintBottom_toBottomOf="@id/guideline4"
         app:layout_constraintEnd_toEndOf="parent"
@@ -110,27 +117,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="137dp" />
+        app:layout_constraintGuide_begin="141dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="60dp" />
+        app:layout_constraintGuide_begin="80dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="120dp" />
+        app:layout_constraintGuide_begin="160dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="180dp" />
+        app:layout_constraintGuide_begin="240dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

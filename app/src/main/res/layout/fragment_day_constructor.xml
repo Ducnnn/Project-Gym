@@ -38,21 +38,23 @@
 
         <EditText
             android:id="@+id/editTextDayTitle"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="69dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/layout_bg"
             android:ellipsize="end"
+            android:fontFamily="sans-serif-black"
             android:gravity="center"
             android:hint="Enter title of your day"
             android:imeOptions="actionDone"
             android:inputType="text"
-            android:text="Day Title"
-            android:fontFamily="sans-serif-black"
             android:maxLines="1"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:background="@drawable/layout_bg"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/btn_add_exercise"
@@ -69,14 +71,17 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycleview_day_constructor"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="24dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
+            android:background="@drawable/layout_bg"
             app:layout_constraintBottom_toTopOf="@+id/btn_add_constructed_day"
-            app:layout_constraintTop_toBottomOf="@+id/btn_add_exercise"
-            tools:layout_editor_absoluteX="122dp"
-            android:background="@drawable/layout_bg"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_add_exercise" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
